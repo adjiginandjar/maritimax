@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\ImageCargo;
 
-class CargoResource extends JsonResource
+class ListCargoResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -22,15 +22,11 @@ class CargoResource extends JsonResource
           'city' => $this->city,
           'location' => $this->location,
           'price' => $this->price,
-          'length' => $this->length,
-          'width' => $this->width,
-          'height' => $this->height,
-          'curb_weight' => $this->crub_weight,
-          'load_capacity' => $this->load_capacity,
           'available_start' => $this->available_start,
           'available_end' => $this->available_end,
           'booking_type' => $this->booking_type,
           'booking_status' => $this->booking_status,
+          'img_url'=> $this->first_image,
         ];
     }
 }

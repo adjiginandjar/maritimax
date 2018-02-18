@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\cargo;
+use App\Cargo;
 use App\Http\Resources\CargoResource;
+use App\Http\Resources\CargosResource;
+use App\Http\Resources\ListCargoResource;
 use Illuminate\Http\Request;
 
 class CargoController extends Controller
 {
+
+
+
+    //static $limit_fot_list = ['length','width','height','curb_weight','load_capacity'];
     /**
      * Display a listing of the resource.
      *
@@ -25,8 +31,8 @@ class CargoController extends Controller
      */
     public function paginate($limit)
     {
-        return CargoResource::collection(Cargo::paginate($limit))
-        ->hide(['length','width','height','crub_weight','load_capacity']);
+        return ListCargoResource::collection(Cargo::all());
+
     }
 
     /**
@@ -60,7 +66,7 @@ class CargoController extends Controller
      */
     public function show(cargo $cargo)
     {
-        return $cargo;
+        return $cargo->load('imageCargos');
     }
 
     /**
