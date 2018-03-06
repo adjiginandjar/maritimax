@@ -25,10 +25,14 @@ class CreateCargosTable extends Migration
             $table->integer('height');
             $table->integer('curb_weight');
             $table->integer('load_capacity');
+            $table->integer('available_capacity');
             $table->timestamp('available_start')->nullable();
             $table->timestamp('available_end')->nullable();
-            $table->enum('booking_type',['freight','time']);
+            $table->enum('booking_type',['rent','buy']);
+            $table->enum('charter_type',['freight','time']);
             $table->enum('booking_status',['available','booked']);
+            $table->integer('category_id')->nullable()->unsigned();
+            $table->foreign('category_id')->references('id')->on('category_cargos');
             $table->timestamps();
         });
     }

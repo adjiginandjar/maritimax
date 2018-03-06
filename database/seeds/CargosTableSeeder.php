@@ -31,10 +31,13 @@ class CargosTableSeeder extends Seeder
               'height' => $faker->numberBetween(300, 400),
               'curb_weight' => $faker->numberBetween(3000, 4000),
               'load_capacity' => $faker->numberBetween(20000, 30000),
+              'available_capacity' => 0,
               'available_start' => $now,
               'available_end' => $now,
-              'booking_type' => $faker->randomElement(['freight' ,'time']),
+              'booking_type' => $faker->randomElement(['rent' ,'buy']),
+              'charter_type' => $faker->randomElement(['freight' ,'time']),
               'booking_status' => 'available',
+              'category_id' => $faker->numberBetween(1, 4),
             ]);
         }
     }
