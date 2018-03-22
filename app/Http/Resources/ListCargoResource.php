@@ -26,7 +26,7 @@ class ListCargoResource extends JsonResource
           'available_end' => $this->available_end,
           'booking_type' => $this->booking_type,
           'booking_status' => $this->booking_status,
-          'img_url'=> $this->first_image,
+          'image_cargo'=> $this->first_image,
         ];
     }
 }
