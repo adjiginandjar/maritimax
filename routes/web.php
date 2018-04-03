@@ -10,7 +10,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\User;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('cat/create', [
+    'uses' => 'CategoryPostController@create',
+    'as' => 'category.create'
+]);
+
+Route::post('cats', [
+    'uses' => 'CategoryPostController@store',
+    'as' => 'cats.store'
+]);

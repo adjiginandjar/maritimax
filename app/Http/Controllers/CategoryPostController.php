@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\CategoryPost;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
+use Kris\LaravelFormBuilder\FormBuilder;
+use App\Forms\CategoryForm;
+use Illuminate\Support\Facades\Log;
 
-class CategoryPostController extends Controller
+class CategoryPostController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -22,9 +26,14 @@ class CategoryPostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(FormBuilder $formBuilder)
     {
-        //
+      $form = $formBuilder->create(CategoryForm::class, [
+          'method' => 'POST',
+          'url' => route('cats.store')
+      ]);
+
+      return view('si.forms.category.create', compact('form'));
     }
 
     /**
@@ -33,9 +42,17 @@ class CategoryPostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FormBuilder $formBuilder,Request $request)
     {
-        //
+      $form = $formBuilder->create(CategoryForm::class);
+
+      if (!$form->isValid()) {
+          return redirect()->back()->withErrors($form->getErrors())->withInput();
+      }
+      //$categoryPost = CategoryPost::create($request->all());
+
+      return redirect()->back();
+
     }
 
     /**
