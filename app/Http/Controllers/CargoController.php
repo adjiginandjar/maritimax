@@ -31,7 +31,7 @@ class CargoController extends Controller
      */
     public function paginate($limit)
     {
-        return ListCargoResource::collection(Cargo::all());
+        return ListCargoResource::collection(Cargo::paginate($limit));
 
     }
 
