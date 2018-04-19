@@ -16,10 +16,26 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+/**
+* Cargo API Controller
+*
+*/
 Route::get('cargos/', 'CargoController@index');
 Route::get('cargos/paginate/{limit}', 'CargoController@paginate');
+Route::get('cargo/{cargo}', 'CargoController@getDetail');
 Route::get('cargos/{cargo}', 'CargoController@show');
 Route::post('cargos', 'CargoController@store');
-Route::put('cargos/{cargo}', 'ArticleController@update');
-Route::delete('cargos/{cargo}', 'ArticleController@delete');
+Route::put('cargos/{cargo}', 'CargoController@update');
+Route::delete('cargos/{cargo}', 'CargoController@delete');
+
+/**
+* Article API Controller
+*
+*/
+Route::get('posts/', 'PostController@index');
+Route::get('posts/paginate/{limit}', 'PostController@paginate');
+Route::get('posts/{post}', 'PostController@getDetail');
+Route::get('posts/{post}', 'PostController@show');
+Route::post('posts', 'PostController@store');
+Route::put('posts/{post}', 'PostController@update');
+Route::delete('posts/{post}', 'PostController@delete');

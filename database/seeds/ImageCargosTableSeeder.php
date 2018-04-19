@@ -16,7 +16,7 @@ class ImageCargosTableSeeder extends Seeder
 
         $faker = \Faker\Factory::create();
 
-        for ($cargo_id = 1; $cargo_id <= 20; $cargo_id++) {
+        for ($cargo_id = 1; $cargo_id <= 100; $cargo_id++) {
             for($index_img=0; $index_img < 6; $index_img++){
                 ImageCargo::create([
                   'img_url' => $faker->imageUrl($width = 768, $height = 432),

@@ -35,6 +35,48 @@ class CargoController extends Controller
 
     }
 
+    public function filter(Request $request, Cargo $cargo)
+    {
+        $cargo = $cargo->newQuery();
+        if($request->has('description')){
+          $description = $request->input('description');
+          $searchValues = preg_split('/\s+/', $description, -1, PREG_SPLIT_NO_EMPTY);
+
+          $cargo->where(function ($q) use ($searchValues) {
+              foreach ($searchValues as $value) {
+                $q->orWhere('description', 'like', "%{$value}%");
+              }
+            })->get();
+
+        }
+        if($request->has('cargo_model_id')){
+          $cargo->where('cargo_model_id', $request->input('cargo_model_id'))->get();
+        }
+        if($request->has('charter_type_id')){
+          $cargo->where('charter_type_id', $request->input('charter_type_id'))->get();
+        }
+        if($request->has('available_date')){
+          $cargo->where('available_start', '>=',$request->input('available_date'))->get();
+        }
+        if($request->has('available_date')){
+          $cargo->where('available_end', '<=',$request->input('available_date'))->get();
+        }
+        if($request->has('location')){
+          $cargo->where('location', $request->input('location'))->get();
+        }
+        if($request->has('city')){
+          $cargo->where('city', $request->input('city'))->get();
+        }
+        if($request->has('available_capacity')){
+          $cargo->where('available_capacity', '>=',$request->input('available_capacity'))->get();
+        }
+        if($request->has('year_build')){
+          $cargo->where('year_build', $request->input('year_build'))->get();
+        }
+        return $cargo;
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -67,6 +109,17 @@ class CargoController extends Controller
     public function show(cargo $cargo)
     {
         return $cargo->load('imageCargos');
+    }
+
+    /**
+     * Display the detail resource.
+     *
+     * @param  \App\cargo  $cargo
+     * @return \Illuminate\Http\Response
+     */
+    public function getDetail(cargo $cargo)
+    {
+        return new CargoResource($cargo);
     }
 
     /**

@@ -14,11 +14,26 @@ class Cargo extends Model
         return $this->hasMany('App\ImageCargo');
 
     }
+    public function cargoModel()
+    {
+        return $this->belongsTo('App\CargoModel');
+
+    }
+    public function categoryCargo()
+    {
+        return $this->belongsTo('App\CategoryCargo');
+
+    }
+    public function charterType()
+    {
+        return $this->belongsTo('App\CharterType');
+
+    }
 
     public function getFirstImageAttribute(){
       return $this->imageCargos->first();
     }
 
-    
+
 
 }

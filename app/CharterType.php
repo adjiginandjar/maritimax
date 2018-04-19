@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CategoryCargo extends Model
+class CharterType extends Model
 {
   public function cargos()
   {

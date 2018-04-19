@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
+use App\ContactUs;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class ContactUsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return Post::all();
+        //
     }
 
     /**
@@ -35,57 +35,51 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-      $post = Post::create($request->all());
-
-      return response()->json($post, 201);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Post  $post
+     * @param  \App\ContactUs  $contactUs
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(ContactUs $contactUs)
     {
-        return $post;
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Post  $post
+     * @param  \App\ContactUs  $contactUs
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(ContactUs $contactUs)
     {
-        return $post;
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Post  $post
+     * @param  \App\ContactUs  $contactUs
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, ContactUs $contactUs)
     {
-      $post->update($request->all());
-
-      return response()->json($post, 200);
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Post  $post
+     * @param  \App\ContactUs  $contactUs
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(ContactUs $contactUs)
     {
-      $post->delete();
-
-      return response()->json(null,204);
+        //
     }
 }

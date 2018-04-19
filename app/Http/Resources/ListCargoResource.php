@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\ImageCargo;
+use App\CargoModel;
 
 class ListCargoResource extends JsonResource
 {
@@ -26,7 +27,10 @@ class ListCargoResource extends JsonResource
           'available_end' => $this->available_end,
           'booking_type' => $this->booking_type,
           'booking_status' => $this->booking_status,
-          'image_cargo'=> $this->first_image,
+          'cargo_model' => $this->cargoModel->name,
+          'load_capacity' => $this->load_capacity,
+          'available_capacity' => $this->available_capacity,
+          'image_cargo'=> $this->first_image->img_url,
         ];
     }
 }
