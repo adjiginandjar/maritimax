@@ -15,6 +15,16 @@ use App\User;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/si', function () {
+    return view('si/layouts/baselayout');
+});
+Route::get('/categorycargo', function () {
+    return view('si/pages/categorycargo');
+});
+
+Route::get('/tuts', function () {
+    return view('si/layouts/example');
+});
 
 Route::get('cat/create', [
     'uses' => 'CategoryPostController@create',
