@@ -14,12 +14,15 @@ class CategoryPostSeeder extends Seeder
     {
       CategoryPost::create([
         'name' => 'News',
+        'publish_status' => 'publish',
       ]);
       CategoryPost::create([
         'name' => 'Promo',
+        'publish_status' => 'publish',
       ]);
       CategoryPost::create([
         'name' => 'Headline',
+        'publish_status' => 'publish',
       ]);
     }
 }

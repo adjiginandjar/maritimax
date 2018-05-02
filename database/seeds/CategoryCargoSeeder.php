@@ -14,15 +14,19 @@ class CategoryCargoSeeder extends Seeder
     {
       CategoryCargo::create([
         'name' => 'Kapal',
+        'publish_status' => 'publish',
       ]);
       CategoryCargo::create([
         'name' => 'Service',
+        'publish_status' => 'publish',
       ]);
       CategoryCargo::create([
         'name' => 'Spareparts',
+        'publish_status' => 'publish',
       ]);
       CategoryCargo::create([
         'name' => 'Tools',
+        'publish_status' => 'publish',
       ]);
     }
 }

@@ -34,6 +34,7 @@ class CreateCargosTable extends Migration
             $table->timestamp('available_end')->nullable();
             $table->enum('booking_type',['charter','buy']);
             $table->enum('booking_status',['available','booked']);
+            $table->enum('publish_status',['publish','unpublish']);
             $table->integer('cargo_model_id')->nullable()->unsigned();
             $table->foreign('cargo_model_id')->references('id')->on('cargo_models');
             $table->integer('charter_type_id')->nullable()->unsigned();

@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->text('body');
             $table->string('slug')->unique();
+            $table->enum('publish_status',['publish','unpublish']);
             $table->integer('category_id')->nullable()->unsigned();
             $table->foreign('category_id')->references('id')->on('category_posts');
             $table->string('img_cover')->nullable();

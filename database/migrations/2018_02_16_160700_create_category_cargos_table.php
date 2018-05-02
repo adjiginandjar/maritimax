@@ -16,6 +16,7 @@ class CreateCategoryCargosTable extends Migration
         Schema::create('category_cargos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->enum('publish_status',['publish','unpublish']);
             $table->timestamps();
         });
     }

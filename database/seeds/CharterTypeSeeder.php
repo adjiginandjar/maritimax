@@ -14,12 +14,15 @@ class CharterTypeSeeder extends Seeder
     {
       CharterType::create([
         'name' => 'Time Charter',
+        'publish_status' => 'publish',
       ]);
       CharterType::create([
         'name' => 'Voyage Charterer',
+        'publish_status' => 'publish',
       ]);
       CharterType::create([
         'name' => 'Bareboat Charter',
+        'publish_status' => 'publish',
       ]);
 
     }

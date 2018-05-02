@@ -16,6 +16,7 @@ class CreateCategoryPostsTable extends Migration
         Schema::create('category_posts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->enum('publish_status',['publish','unpublish']);
             $table->timestamps();
         });
     }

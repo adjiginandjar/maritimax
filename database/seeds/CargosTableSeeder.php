@@ -42,6 +42,7 @@ class CargosTableSeeder extends Seeder
               'cargo_model_id' => $faker->numberBetween(1, 4),
               'charter_type_id' => $faker->numberBetween(1, 3),
               'booking_status' => 'available',
+              'publish_status' => 'publish',
               'category_cargo_id' => $faker->numberBetween(1, 4),
             ]);
         }

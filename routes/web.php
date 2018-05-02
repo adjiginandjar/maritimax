@@ -21,6 +21,9 @@ Route::get('/si', function () {
 Route::get('/categorycargo', function () {
     return view('si/pages/categorycargo');
 });
+Route::get('/cargo', function () {
+    return view('si/pages/cargo');
+});
 
 Route::get('/tuts', function () {
     return view('si/layouts/example');

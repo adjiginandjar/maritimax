@@ -23,6 +23,7 @@ class PostSeeder extends Seeder
           'title' => $title,
           'body' => $faker->paragraph,
           'slug' => str_slug($title),
+          'publish_status' => 'publish',
           'category_id' => $faker->numberBetween(1, 3),
           'img_cover' => $faker->imageUrl($width = 768, $height = 432),
           'user_id' => $faker->numberBetween(1, 5),

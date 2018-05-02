@@ -16,6 +16,7 @@ class CreateCharterTypesTable extends Migration
         Schema::create('charter_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->enum('publish_status',['publish','unpublish']);
             $table->timestamps();
         });
     }
