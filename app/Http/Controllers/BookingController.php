@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Booking;
 use Illuminate\Http\Request;
+use App\Cargo;
 
 class BookingController extends Controller
 {
@@ -35,7 +36,25 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $cargo = Cargo::findOrFail($request->input('cargo_id'));
+      if($cargo->available_capacity - $request->input('capacity') >= 0){
+
+        $cargo->available_capacity = $cargo->available_capacity - $request->input('capacity');
+        if($cargo->available_capacity <= 0){
+          $cargo->booking_status = 'booked';
+
+        }
+        DB::beginTransaction();
+        $booking->user_id = $request->user()->id;
+        $booking = Booking::create($request->all());
+        $cargo->save();
+        DB::commit();
+        return response()->json($booking, 201);
+      }else{
+        return response()->json("Cargo is Full", 404);
+      }
+
+
     }
 
     /**

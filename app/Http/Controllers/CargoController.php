@@ -7,6 +7,7 @@ use App\Http\Resources\CargoResource;
 use App\Http\Resources\CargosResource;
 use App\Http\Resources\ListCargoResource;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class CargoController extends Controller
 {
@@ -37,17 +38,21 @@ class CargoController extends Controller
 
     public function filter(Request $request, Cargo $cargo)
     {
+        //return $request->input('city');
         $cargo = $cargo->newQuery();
+        // if($request->has('description')){
+        //   $description = $request->input('description');
+        //   $searchValues = preg_split('/\s+/', $description, -1, PREG_SPLIT_NO_EMPTY);
+        //
+        //   $cargo->where(function ($q) use ($searchValues) {
+        //       foreach ($searchValues as $value) {
+        //         $q->orWhere('description', 'like', "%{$value}%");
+        //       }
+        //     })->get();
+        //
+        // }
         if($request->has('description')){
-          $description = $request->input('description');
-          $searchValues = preg_split('/\s+/', $description, -1, PREG_SPLIT_NO_EMPTY);
-
-          $cargo->where(function ($q) use ($searchValues) {
-              foreach ($searchValues as $value) {
-                $q->orWhere('description', 'like', "%{$value}%");
-              }
-            })->get();
-
+          $cargo->where('description','like',$request->input('description'))->get();
         }
         if($request->has('cargo_model_id')){
           $cargo->where('cargo_model_id', $request->input('cargo_model_id'))->get();
@@ -56,10 +61,11 @@ class CargoController extends Controller
           $cargo->where('charter_type_id', $request->input('charter_type_id'))->get();
         }
         if($request->has('available_date')){
-          $cargo->where('available_start', '>=',$request->input('available_date'))->get();
+          $cargo->where('available_start', '<=',$request->input('available_date'))->get();
         }
         if($request->has('available_date')){
-          $cargo->where('available_end', '<=',$request->input('available_date'))->get();
+
+          $cargo->where('available_end', '>=',$request->input('available_date'))->get();
         }
         if($request->has('location')){
           $cargo->where('location', $request->input('location'))->get();
@@ -73,7 +79,7 @@ class CargoController extends Controller
         if($request->has('year_build')){
           $cargo->where('year_build', $request->input('year_build'))->get();
         }
-        return $cargo;
+         return ListCargoResource::collection($cargo->get());
 
     }
 

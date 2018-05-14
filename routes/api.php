@@ -22,6 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 */
 Route::get('cargos/', 'CargoController@index');
 Route::get('cargos/paginate/{limit}', 'CargoController@paginate');
+Route::get('cargos/filter', 'CargoController@filter');
 Route::get('cargo/{cargo}', 'CargoController@getDetail');
 Route::get('cargos/{cargo}', 'CargoController@show');
 Route::post('cargos', 'CargoController@store');
@@ -39,3 +40,9 @@ Route::get('posts/{post}', 'PostController@show');
 Route::post('posts', 'PostController@store');
 Route::put('posts/{post}', 'PostController@update');
 Route::delete('posts/{post}', 'PostController@delete');
+
+/**
+* Booking API Controller
+*
+*/
+Route::post('booking/process', 'BookingController@store')->middleware('auth:api');
