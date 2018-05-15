@@ -19,7 +19,7 @@ class CreateBookingsTable extends Migration
             $table->string('phone_number');
             $table->string('email');
             $table->string('capacity');
-            $table->string('destination_form');
+            $table->string('destination_from');
             $table->string('destination_to');
             $table->timestamp('date');
             $table->integer('cargo_id')->nullable()->unsigned();

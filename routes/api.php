@@ -46,3 +46,20 @@ Route::delete('posts/{post}', 'PostController@delete');
 *
 */
 Route::post('booking/process', 'BookingController@store')->middleware('auth:api');
+
+
+/**
+* Category Cargo
+*
+*/
+Route::get('category-cargo', 'CategoryCargoController@index');
+/**
+* Model Cargo
+*
+*/
+Route::get('model-cargo', 'CargoModelController@index');
+/**
+* Charter Type
+*
+*/
+Route::get('charter-type', 'CharterTypeController@index');

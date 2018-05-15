@@ -14,7 +14,7 @@ class CharterTypeController extends Controller
      */
     public function index()
     {
-        //
+        return CharterType::all();
     }
 
     /**

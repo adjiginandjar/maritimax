@@ -44,11 +44,13 @@ class BookingController extends Controller
           $cargo->booking_status = 'booked';
 
         }
-        DB::beginTransaction();
-        $booking->user_id = $request->user()->id;
-        $booking = Booking::create($request->all());
+        // DB::beginTransaction();
+        // $booking->user_id = $request->user()->id;
+        $request->request->add(["user_id"=>$request->user()->id]);
+        // info($request->all());
+        $booking = Booking::forceCreate($request->all());
         $cargo->save();
-        DB::commit();
+        // DB::commit();
         return response()->json($booking, 201);
       }else{
         return response()->json("Cargo is Full", 404);

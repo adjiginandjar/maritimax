@@ -14,7 +14,7 @@ class CategoryCargoController extends Controller
      */
     public function index()
     {
-        //
+        return CategoryCargo::all();
     }
 
     /**
