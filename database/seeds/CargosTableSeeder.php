@@ -23,7 +23,7 @@ class CargosTableSeeder extends Seeder
             Cargo::create([
               'name' => $faker->name,
               'description' => $faker->paragraph,
-              'city' => $faker->city,
+              'city' => $faker->randomElement(['Jakarta' ,'Bandung','Surabaya','Makasar']),
               'location' => $faker->state,
               'price' => $price,
               'length' => $faker->numberBetween(1000, 2000),

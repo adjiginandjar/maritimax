@@ -22,7 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 */
 Route::get('cargos/', 'CargoController@index');
 Route::get('cargos/paginate/{limit}', 'CargoController@paginate');
-Route::get('cargos/filter', 'CargoController@filter');
+Route::get('cargos/filter', 'CargoController@search');
 Route::get('cargo/{cargo}', 'CargoController@getDetail');
 Route::get('cargos/{cargo}', 'CargoController@show');
 Route::post('cargos', 'CargoController@store');
@@ -63,3 +63,9 @@ Route::get('model-cargo', 'CargoModelController@index');
 *
 */
 Route::get('charter-type', 'CharterTypeController@index');
+
+/**
+*
+* Cities
+*/
+Route::get('cities', 'CitiesController@autocomplete');

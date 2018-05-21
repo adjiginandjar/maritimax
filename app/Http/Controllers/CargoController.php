@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Cargo;
 use App\Http\Resources\CargoResource;
 use App\Http\Resources\CargosResource;
-use App\Http\Resources\ListCargoResource;
+use App\Http\Resources\ListCargoSearchResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 class CargoController extends Controller
@@ -84,6 +85,54 @@ class CargoController extends Controller
          return ListCargoResource::collection($cargo->get());
 
     }
+
+    public function search(Request $request,Cargo $cargos)
+    {
+
+        $query = DB::table('cargos')
+                ->join('cargo_models', 'cargos.cargo_model_id', '=', 'cargo_models.id')
+                ->join('charter_types', 'cargos.charter_type_id', '=', 'charter_types.id')
+                ->join('category_cargos', 'cargos.category_cargo_id', '=', 'category_cargos.id')
+                ->select('cargos.*', 'cargo_models.name as cargo_model','charter_types.name as charter_type','category_cargos.name as category_cargo');
+
+        $query->where('booking_status', 'available');
+        $query->where('cargos.publish_status', 'publish');
+        if($request->has('description')){
+          $query->where('description','like',$request->input('description'));
+        }
+        if($request->has('cargo_model_id')){
+          $query->where('cargo_model_id', $request->input('cargo_model_id'));
+        }
+        if($request->has('charter_type_id')){
+          $query->where('charter_type_id', $request->input('charter_type_id'));
+        }
+        if($request->has('available_date')){
+          $query->where('available_start', '<=',$request->input('available_date'));
+        }
+        if($request->has('available_date')){
+
+          $query->where('available_end', '>=',$request->input('available_date'));
+        }
+        if($request->has('location')){
+          $query->where('location', $request->input('location'));
+        }
+        if($request->has('city')){
+          $query->where('city', $request->input('city'));
+        }
+        if($request->has('available_capacity')){
+          $query->where('available_capacity', '>=',$request->input('available_capacity'));
+        }
+        if($request->has('year_build')){
+          $query->where('year_build', $request->input('year_build'));
+        }
+
+        $cargos = $query->orderBy('cargos.created_at', 'DESC')->paginate(10);
+        $cargos = ListCargoSearchResource::collection($cargos);
+        $cargos->appends($request->toArray());
+        return $cargos;
+
+    }
+
 
     /**
      * Show the form for creating a new resource.

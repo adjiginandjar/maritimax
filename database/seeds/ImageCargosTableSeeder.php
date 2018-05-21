@@ -19,7 +19,7 @@ class ImageCargosTableSeeder extends Seeder
         for ($cargo_id = 1; $cargo_id <= 100; $cargo_id++) {
             for($index_img=0; $index_img < 6; $index_img++){
                 ImageCargo::create([
-                  'img_url' => $faker->imageUrl($width = 768, $height = 432),
+                  'img_url' => 'https://loremflickr.com/786/432/tankers,vessel?random='.$faker->numberBetween(1, 5000),
                   'cargo_id' => $cargo_id,
                 ]);
             }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Booking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Cargo;
 
 class BookingController extends Controller
@@ -44,13 +45,13 @@ class BookingController extends Controller
           $cargo->booking_status = 'booked';
 
         }
-        // DB::beginTransaction();
+        DB::beginTransaction();
         // $booking->user_id = $request->user()->id;
         $request->request->add(["user_id"=>$request->user()->id]);
         // info($request->all());
         $booking = Booking::forceCreate($request->all());
         $cargo->save();
-        // DB::commit();
+        DB::commit();
         return response()->json($booking, 201);
       }else{
         return response()->json("Cargo is Full", 404);
