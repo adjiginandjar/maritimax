@@ -38,3 +38,6 @@ Route::post('cats', [
     'uses' => 'CategoryPostController@store',
     'as' => 'cats.store'
 ]);
+
+Route::get('redirect/google', 'Auth\LoginController@redirectToProvider');
+Route::get('callback/google', 'Auth\LoginController@handleProviderCallback');

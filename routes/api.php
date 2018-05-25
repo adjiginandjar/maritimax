@@ -16,6 +16,10 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Route::middleware('auth:api')->get('/user/google', function (Request $request) {
+//     return $request->user();
+// });
 /**
 * Cargo API Controller
 *
@@ -42,9 +46,19 @@ Route::put('posts/{post}', 'PostController@update');
 Route::delete('posts/{post}', 'PostController@delete');
 
 /**
+*
+* User API Controller
+*/
+Route::post('user/register','UserController@store');
+Route::get('user/google','UserController@getUser');
+Route::get('user/manual','UserController@manuallogin');
+
+
+/**
 * Booking API Controller
 *
 */
+
 Route::post('booking/process', 'BookingController@store')->middleware('auth:api');
 
 
