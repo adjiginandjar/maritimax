@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use App\Traits\PassportToken;
 use Socialite;
 
 class UserController extends Controller
 {
+
+    use PassportToken;
     /**
      * Display a listing of the resource.
      *
@@ -37,9 +40,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-      $password = $request->input('password');
-      $email = $request->input('email');
-
       $user = User::create([
           'name' => $request->input('name'),
           'email' => $request->input('email'),
@@ -47,20 +47,7 @@ class UserController extends Controller
           'password' => bcrypt($request->input('password')),
       ]);
 
-      $http = new Client();
-
-      $response = $http->post('http://localhost:8000/oauth/token', [
-          'form_params' => [
-              'grant_type' => 'password',
-              'client_id' => '2',
-              'client_secret' => 'RUlGKC8EFpdbOHlo8cobBz1tffwfwXErz2tIurvb',
-              'username' => $email,
-              'password' => $password,
-              'scope' => '*',
-          ],
-      ]);
-
-      return json_decode((string) $response->getBody(), true);
+      return $this->getBearerTokenByUser($user, 2, true);
 
 
 
@@ -121,19 +108,10 @@ class UserController extends Controller
     }
 
     public function manuallogin(){
-      $http = new Client();
-
-      $response = $http->post('http://localhost:8000/oauth/token', [
-          'form_params' => [
-              'grant_type' => 'password',
-              'client_id' => '2',
-              'client_secret' => 'RUlGKC8EFpdbOHlo8cobBz1tffwfwXErz2tIurvb',
-              'username' => 'info02@maritimax.com',
-              'password' => 'maritimax',
-              'scope' => '*',
-          ],
-      ]);
-
-      return json_decode((string) $response->getBody(), true);
+      $user = User::find(26);
+      // return  response
+      return $this->getBearerTokenByUser($user, 1, true);
+      // return array
+      // return $this->getBearerTokenByUser($user, 1, false);
     }
 }
