@@ -50,8 +50,9 @@ Route::delete('posts/{post}', 'PostController@delete');
 * User API Controller
 */
 Route::post('user/register','UserController@store');
-Route::get('user/google','UserController@getUser');
-Route::get('user/manual','UserController@manuallogin');
+Route::post('user/register/google','UserController@storeGoogle');
+Route::get('user/fetchgoogle','UserController@getUser');
+// Route::get('callback/google', 'Auth\LoginController@handleProviderCallback');
 
 
 /**

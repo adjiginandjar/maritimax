@@ -13,7 +13,10 @@
 use App\User;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('redirect');
+});
+Route::get('/google', function () {
+    return view('redirect');
 });
 Route::get('/si', function () {
     return view('si/layouts/baselayout');
@@ -40,4 +43,5 @@ Route::post('cats', [
 ]);
 
 Route::get('redirect/google', 'Auth\LoginController@redirectToProvider');
-Route::get('callback/google', 'Auth\LoginController@handleProviderCallback');
+
+// Route::get('callback/google', 'Auth\LoginController@handleProviderCallback');

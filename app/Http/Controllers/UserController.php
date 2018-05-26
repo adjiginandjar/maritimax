@@ -100,11 +100,44 @@ class UserController extends Controller
     }
 
     public function getUser(Request $request){
-      $user = Socialite::driver('google')->userFromToken($request->input('google-token'));
+      // $user = Socialite::driver('google')->user();
+      // $token = Socialite::driver('google')->getAccessTokenResponse($request->input('google-token'));
+      // info($token);
+      info($request->input('google-token'));
+      $user = Socialite::driver('google')->stateless()->userFromToken($request->input('google-token'));
       info($user->token);
       info($user->refreshToken); // not always provided
       info($user->expiresIn);
-      return $user->toString();
+      info('+++++++++++++++++++++++++++++++++++++++++++++++');
+      info($user->getId());
+      info($user->getNickname());
+      info($user->getName());
+      info($user->getEmail());
+      info($user->getAvatar());
+      // return $user->toString();
+    }
+
+    public function storeGoogle(Request $request){
+      // $user = Socialite::driver('google')->user();
+      // $token = Socialite::driver('google')->getAccessTokenResponse($request->input('google-token'));
+
+      $gooleUser = Socialite::driver('google')->stateless()->userFromToken($request->input('google-token'));
+
+      $existUser = User::where('email',$gooleUser->getEmail())->first();
+
+      if($existUser){
+        return $this->getBearerTokenByUser($existUser, 2, true);
+      }else{
+        $newUser = User::create([
+            'name' => $gooleUser->getName(),
+            'email' => $gooleUser->getEmail(),
+            'password' => bcrypt('google'.':'.$gooleUser->getEmail()),
+        ]);
+
+        return $this->getBearerTokenByUser($newUser, 2, true);
+      }
+
+      // return $user->toString();
     }
 
     public function manuallogin(){

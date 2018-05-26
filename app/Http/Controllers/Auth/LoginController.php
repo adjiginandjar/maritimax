@@ -44,7 +44,7 @@ class LoginController extends Controller
     */
    public function redirectToProvider()
    {
-       return Socialite::driver('google')->redirect();
+       return Socialite::driver('google')->stateless()->redirect();
    }
 
    /**
@@ -54,15 +54,15 @@ class LoginController extends Controller
     */
    public function handleProviderCallback()
    {
-      $user = Socialite::driver('google')->user();
-
-      User::create([
-          'name' => $unserialize->input('name'),
-          'email' => $request->input('email'),
-          'phone_number' => $request->input('phone_number'),
-          'password' => bcrypt($request->input('password')),
-      ]);
-
-      return $user->token;
+      // $user = Socialite::driver('google')->user();
+      //
+      // User::create([
+      //     'name' => $user->input('name'),
+      //     'email' => $request->input('email'),
+      //     'phone_number' => $request->input('phone_number'),
+      //     'password' => bcrypt($request->input('password')),
+      // ]);
+      $user = Socialite::driver('google')->stateless()->user();
+      return response()->json($user, 201);
    }
 }
