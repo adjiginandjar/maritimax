@@ -6,6 +6,7 @@ use App\Cargo;
 use App\Http\Resources\CargoResource;
 use App\Http\Resources\CargosResource;
 use App\Http\Resources\ListCargoSearchResource;
+use App\Http\Resources\ListCargoResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
