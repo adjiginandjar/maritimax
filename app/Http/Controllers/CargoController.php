@@ -89,7 +89,7 @@ class CargoController extends Controller
 
     public function search(Request $request,Cargo $cargos)
     {
-
+        $limit = 10;
         $query = DB::table('cargos')
                 ->join('cargo_models', 'cargos.cargo_model_id', '=', 'cargo_models.id')
                 ->join('charter_types', 'cargos.charter_type_id', '=', 'charter_types.id')
@@ -127,7 +127,11 @@ class CargoController extends Controller
           $query->where('year_build', $request->input('year_build'));
         }
 
-        $cargos = $query->orderBy('cargos.created_at', 'DESC')->paginate(10);
+        if($request->has('limit')){
+          $limit = $request->input('limit');
+        }
+
+        $cargos = $query->orderBy('cargos.created_at', 'DESC')->paginate($limit);
         $cargos = ListCargoSearchResource::collection($cargos);
         $cargos->appends($request->toArray());
         return $cargos;
