@@ -57,6 +57,7 @@ class CargoController extends Controller
         $cargo->where('publish_status', 'publish')->get();
         if($request->has('description')){
           $cargo->where('description','like',$request->input('description'))->get();
+          $cargo->where('name','like',$request->input('description'))->get();
         }
         if($request->has('cargo_model_id')){
           $cargo->where('cargo_model_id', $request->input('cargo_model_id'))->get();
@@ -76,6 +77,9 @@ class CargoController extends Controller
         }
         if($request->has('city')){
           $cargo->where('city', $request->input('city'))->get();
+        }
+        if($request->has('booking_type')){
+          $cargo->where('booking_type', $request->input('booking_type'))->get();
         }
         if($request->has('available_capacity')){
           $cargo->where('available_capacity', '>=',$request->input('available_capacity'))->get();
