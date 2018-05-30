@@ -23,6 +23,7 @@ class UsersTableSeeder extends Seeder
           User::create([
             'name' => $faker->name,
             'email' => $faker->safeEmail,
+            'reset_attempt' => 0,
             'password' => bcrypt('maritimax'),
           ]);
       }

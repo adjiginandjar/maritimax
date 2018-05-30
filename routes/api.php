@@ -52,6 +52,8 @@ Route::delete('posts/{post}', 'PostController@delete');
 Route::post('user/register','UserController@store');
 Route::post('user/register/google','UserController@storeGoogle');
 Route::get('user/fetchgoogle','UserController@getUser');
+Route::post('user/forgot-password','UserController@forgotPassword');
+Route::post('user/reset-password','UserController@resetPassword');
 // Route::get('callback/google', 'Auth\LoginController@handleProviderCallback');
 
 

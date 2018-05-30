@@ -44,4 +44,6 @@ Route::post('cats', [
 
 Route::get('redirect/google', 'Auth\LoginController@redirectToProvider');
 
+Route::get('/email','UserController@testEmail');
+
 // Route::get('callback/google', 'Auth\LoginController@handleProviderCallback');

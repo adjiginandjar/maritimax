@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use App\Traits\PassportToken;
+use Illuminate\Support\Facades\Mail;
 use Socialite;
 
 class UserController extends Controller
@@ -44,6 +45,7 @@ class UserController extends Controller
           'name' => $request->input('name'),
           'email' => $request->input('email'),
           'phone_number' => $request->input('phone_number'),
+          'reset_attempt' => 0,
           'password' => bcrypt($request->input('password')),
       ]);
 
@@ -146,5 +148,58 @@ class UserController extends Controller
       return $this->getBearerTokenByUser($user, 1, true);
       // return array
       // return $this->getBearerTokenByUser($user, 1, false);
+    }
+
+    public function forgotPassword(Request $request){
+      $user  = User::where('email',$request->input('email'))->first();
+
+      if($user){
+        if($user->reset_attempt < 20){
+            $token = $this->generateRandomString(10);
+            $user->reset_token = $token;
+            $user->reset_attempt +=1;
+
+            $data = array('name'=>$user->name, "body" => "Test mail","token"=>$token);
+            Mail::send('emails.forgotpassword', $data, function($message) use ($user){
+                $message->to($user->email, $user->name)
+                        ->subject('Request For Reset Password');
+                $message->from('siapayangnanyasender@gmail.com','Admin Maritimax');
+            });
+
+            $user->save();
+            return response()->json(['message' => 'Email has been Sent'], 201);
+        }else{
+          return response()->json(['error' => 'Too Many Send Token', 'message' => 'Reach Max Attempt'], 201);
+        }
+      }else{
+        return response()->json(['error' => 'Invalid Email', 'message' => 'Email not Found'], 201);
+      }
+    }
+
+    public function resetPassword(Request $request){
+      $user  = User::where('reset_token',$request->input('reset_token'))->first();
+
+      if($user){
+        $user->password = bcrypt($request->input('new_password'));
+        $user->reset_token = null;
+        $user->save();
+        return response()->json(['message' => 'Password has been change'], 201);
+      }else{
+        return response()->json(['error' => 'Invalid Token', 'message' => 'Token not Found'], 201);
+      }
+    }
+
+    public function testEmail(){
+      return view("emails.forgotpassword",['name'=>"adji", "body" => "Test mail","token"=>"12345"]);
+    }
+
+    public  function generateRandomString($length = 20) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 }
