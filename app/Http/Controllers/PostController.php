@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use App\Http\Resources\ListPostResource;
+use App\Http\Resources\ListPostsResource;
 
 class PostController extends Controller
 {
@@ -15,6 +17,11 @@ class PostController extends Controller
     public function index()
     {
         return Post::all();
+    }
+
+    public function paginate($limit)
+    {
+        return ListPostResource::collection(Post::paginate($limit));
     }
 
     /**

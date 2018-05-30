@@ -64,6 +64,7 @@
 
   function setSigninStatus(isSignedIn) {
     var user = GoogleAuth.currentUser.get();
+    // ACCESS TOKEN ini yang di kirim ke server, balikannya langsung Bearer
     console.log(user.getAuthResponse().access_token);
     var isAuthorized = user.hasGrantedScopes(SCOPE);
     if (isAuthorized) {
