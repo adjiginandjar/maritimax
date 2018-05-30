@@ -6,6 +6,7 @@ use App\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Cargo;
+use App\Http\Resources\BookingResource;
 
 class BookingController extends Controller
 {
@@ -54,9 +55,22 @@ class BookingController extends Controller
         DB::commit();
         return response()->json($booking, 201);
       }else{
-        return response()->json("Cargo is Full", 404);
+        return response()->json(['error' => 'Invalid Email', 'message' => 'Email not Found'], 404);
       }
 
+
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getListBooking(Request $request)
+    {
+      $booking = Booking::where("user_id",$request->user()->id)->first();
+      return response()->json(new BookingResource($booking), 201);
 
     }
 

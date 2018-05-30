@@ -63,6 +63,7 @@ Route::post('user/reset-password','UserController@resetPassword');
 */
 
 Route::post('booking/process', 'BookingController@store')->middleware('auth:api');
+Route::get('user/booking', 'BookingController@getListBooking')->middleware('auth:api');
 
 
 /**
