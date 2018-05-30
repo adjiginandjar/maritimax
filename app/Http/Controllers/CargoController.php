@@ -130,6 +130,9 @@ class CargoController extends Controller
         if($request->has('year_build')){
           $query->where('year_build', $request->input('year_build'));
         }
+        if($request->has('booking_type')){
+          $query->where('booking_type', $request->input('booking_type'))->get();
+        }
 
         if($request->has('limit')){
           $limit = $request->input('limit');
