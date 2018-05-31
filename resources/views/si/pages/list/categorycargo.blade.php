@@ -28,7 +28,7 @@
               <div class="pull-right">
                   <a class="btn btn-success" href="{{ route('categorycargo.create') }}"> Create New Category</a>
               </div>
-          </div>
+    </div>
 </div>
   <table class="table table-bordered">
         <tr>
