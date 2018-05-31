@@ -70,7 +70,7 @@ Route::get('user/booking', 'BookingController@getListBooking')->middleware('auth
 * Category Cargo
 *
 */
-Route::get('category-cargo', 'CategoryCargoController@index');
+Route::get('category-cargo', 'CategoryCargoController@indexAPI');
 /**
 * Model Cargo
 *

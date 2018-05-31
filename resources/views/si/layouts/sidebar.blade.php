@@ -22,7 +22,7 @@
         <li class="heading">
             <h3 class="uppercase">Cargo</h3>
         </li>
-        <li class="nav-item start ">
+        <li class="nav-item start active open ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-diamond"></i>
                 <span class="title">Cargo</span>
@@ -35,8 +35,8 @@
                     </a>
                 </li>
                 <li class="nav-item  ">
-                    <a href="ui_colors.html" class="nav-link ">
-                        <span class="title">Category Cargo</span>
+                    <a href="{{ route('categorycargo.index') }}" class="nav-link ">
+                        <span class="title selected">Category Cargo</span>
                     </a>
                 </li>
                 <li class="nav-item  ">
@@ -67,7 +67,7 @@
 
             </ul>
         </li>
-        <li class="nav-item  active open">
+        <li class="nav-item ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-settings"></i>
                 <span class="title">User</span>
@@ -75,7 +75,7 @@
                 <span class="arrow open"></span>
             </a>
             <ul class="sub-menu">
-                <li class="nav-item  active open">
+                <li class="nav-item ">
                     <a href="form_controls.html" class="nav-link ">
                         <span class="title">User</span>
                         <span class="selected"></span>

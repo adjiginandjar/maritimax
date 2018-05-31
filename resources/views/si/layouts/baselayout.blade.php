@@ -50,29 +50,19 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- BEGIN PAGE BAR -->
                         <div class="page-bar">
                             <ul class="page-breadcrumb">
-                                <li>
-                                    <a href="index.html">Home</a>
-                                    <i class="fa fa-circle"></i>
-                                </li>
-                                <li>
-                                    <span>Form Stuff</span>
-                                </li>
+                                @yield('bread-crumb')
                             </ul>
                         </div>
                         <!-- END PAGE BAR -->
                         <!-- BEGIN PAGE TITLE-->
-                        <h1 class="page-title"> Bootstrap Form Controls
-                            <small>bootstrap inputs, input groups, custom checkboxes and radio controls and more</small>
-                        </h1>
+                        @yield('page-title')
                         <!-- END PAGE TITLE-->
                         <!-- END PAGE HEADER-->
                         <div class="row">
                             <div class="col-md-12 ">
                                 <!-- BEGIN SAMPLE FORM PORTLET-->
                                 <div class="portlet light bordered">
-                                    <div class="portlet-body form">
-                                        @yield('formbody')
-                                    </div>
+                                    @yield('formbody')
                                 </div>
                             </div>
                         </div>

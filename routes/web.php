@@ -18,13 +18,27 @@ Route::get('/', function () {
 Route::get('/google', function () {
     return view('redirect');
 });
+
+
+/**
+*
+* SI
+*/
 Route::get('/si', function () {
     return view('si/layouts/baselayout');
 });
-Route::get('/categorycargo', function () {
-    return view('si/pages/categorycargo');
-});
-Route::get('/cargo', function () {
+/**
+*
+* SI Category Cargo
+*/
+Route::resource('/si/categorycargo', 'CategoryCargoController');
+
+// Route::get('/si/categorycargo', 'CategoryCargoController@index');
+// Route::get('/si/categorycargo/add', 'CategoryCargoController@create');
+// Route::get('/si/categorycargo/edit/{$categoryCargo}', 'CategoryCargoController@edit');
+// Route::post('/si/categorycargo/save', 'CategoryCargoController@store');
+
+Route::get('/si/cargo', function () {
     return view('si/pages/cargo');
 });
 
@@ -47,3 +61,7 @@ Route::get('redirect/google', 'Auth\LoginController@redirectToProvider');
 Route::get('/email','UserController@testEmail');
 
 // Route::get('callback/google', 'Auth\LoginController@handleProviderCallback');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

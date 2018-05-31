@@ -14,7 +14,9 @@ class CategoryCargoController extends Controller
      */
     public function index()
     {
-        return CategoryCargo::all();
+        $categoryCargos = CategoryCargo::paginate(5);
+        return  view('si.pages.list.categorycargo',compact('categoryCargos'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -24,7 +26,7 @@ class CategoryCargoController extends Controller
      */
     public function create()
     {
-        //
+        return view('si.pages.form.addcategorycargo');
     }
 
     /**
@@ -35,7 +37,10 @@ class CategoryCargoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $categoryCargo = CategoryCargo::create($request->all());
+
+      return redirect()->route('categorycargo.index')
+                        ->with('success','Creating successfully.');
     }
 
     /**
@@ -55,9 +60,9 @@ class CategoryCargoController extends Controller
      * @param  \App\CategoryCargo  $categoryCargo
      * @return \Illuminate\Http\Response
      */
-    public function edit(CategoryCargo $categoryCargo)
+    public function edit(CategoryCargo $categorycargo)
     {
-        //
+        return view('si.pages.form.editcategorycargo',compact('categorycargo'));
     }
 
     /**
@@ -67,9 +72,12 @@ class CategoryCargoController extends Controller
      * @param  \App\CategoryCargo  $categoryCargo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CategoryCargo $categoryCargo)
+    public function update(Request $request, CategoryCargo $categorycargo)
     {
-        //
+        $categorycargo->update($request->all());
+
+        return redirect()->route('categorycargo.index')
+                          ->with('success','Updating successfully.');
     }
 
     /**
@@ -78,8 +86,18 @@ class CategoryCargoController extends Controller
      * @param  \App\CategoryCargo  $categoryCargo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CategoryCargo $categoryCargo)
+    public function destroy(CategoryCargo $categorycargo)
     {
         //
+    }
+
+    /**
+     * API Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexAPI()
+    {
+        return CategoryCargo::all();
     }
 }

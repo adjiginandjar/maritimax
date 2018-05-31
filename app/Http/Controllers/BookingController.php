@@ -39,29 +39,37 @@ class BookingController extends Controller
     public function store(Request $request)
     {
       $cargo = Cargo::findOrFail($request->input('cargo_id'));
+      $user = $request->user();
+
       if($cargo->available_capacity - $request->input('capacity') >= 0){
 
-        $cargo->available_capacity = $cargo->available_capacity - $request->input('capacity');
-        if($cargo->available_capacity <= 0){
-          $cargo->booking_status = 'booked';
+        $isBookingExsist = Booking::where('user_id',$user->id)
+                                  ->where('cargo_id',$cargo->id)
+                                  ->first();
+        if($isBookingExsist){
+
+          $cargo->available_capacity = $cargo->available_capacity - $request->input('capacity');
+          if($cargo->available_capacity <= 0){
+            $cargo->booking_status = 'booked';
+
+          }
+
+          DB::beginTransaction();
+          // $booking->user_id = $request->user()->id;
+          $request->request->add(["user_id"=>$user->id]);
+          $booking = Booking::forceCreate($request->all());
+          $cargo->save();
+          DB::commit();
+
+          $data = array('bookingid'=>$booking->id);
+          Mail::send('emails.forgotpassword', $data, function($message) use ($user){
+              $message->to($user->email, $user->name)
+                      ->subject('Booking Status');
+              $message->from('siapayangnanyasender@gmail.com','Admin Maritimax');
+          });
+          return response()->json($booking, 201);
 
         }
-        DB::beginTransaction();
-        // $booking->user_id = $request->user()->id;
-        $request->request->add(["user_id"=>$request->user()->id]);
-        // info($request->all());
-        $booking = Booking::forceCreate($request->all());
-        $cargo->save();
-        DB::commit();
-
-        $user = $request->user();
-        $data = array('bookingid'=>$booking->id);
-        Mail::send('emails.forgotpassword', $data, function($message) use ($user){
-            $message->to($user->email, $user->name)
-                    ->subject('Booking Status');
-            $message->from('siapayangnanyasender@gmail.com','Admin Maritimax');
-        });
-        return response()->json($booking, 201);
       }else{
         return response()->json(['error' => 'Invalid Email', 'message' => 'Email not Found'], 404);
       }
