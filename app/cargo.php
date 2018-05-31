@@ -9,6 +9,8 @@ class Cargo extends Model
     //
     protected $hidden = ['created_at','updated_at'];
 
+    protected $dates = ['available_start','available_end'];
+
     public function imageCargos()
     {
         return $this->hasMany('App\ImageCargo');

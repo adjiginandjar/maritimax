@@ -70,7 +70,7 @@ class CargoController extends Controller
         }
         if($request->has('available_date')){
 
-          $cargo->where('available_end', '>=',$request->input('available_date'))->get();
+          $cargo->where('available_end', '>=',$request->input('available_date'))->get()->format('Y-m-d');
         }
         if($request->has('location')){
           $cargo->where('location', $request->input('location'))->get();

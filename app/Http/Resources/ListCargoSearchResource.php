@@ -6,6 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\DB;
 use App\ImageCargo;
 use App\CargoModel;
+use Carbon\Carbon;
 
 class ListCargoSearchResource extends JsonResource
 {
@@ -23,14 +24,14 @@ class ListCargoSearchResource extends JsonResource
           'description' => $this->description,
           'city' => $this->city,
           'location' => $this->location,
-          'price' => $this->price,
-          'available_start' => $this->available_start,
-          'available_end' => $this->available_end,
+          'price' => number_format($this->price,0,".","."),
+          'available_start' => (new Carbon($this->available_start))->format('d M Y'),
+          'available_end' => (new Carbon($this->available_end))->format('d M Y'),
           'booking_type' => $this->booking_type,
           'booking_status' => $this->booking_status,
           'cargo_model' => $this->cargo_model,
-          'load_capacity' => $this->load_capacity,
-          'available_capacity' => $this->available_capacity,
+          'load_capacity' => number_format($this->load_capacity,0,".","."),
+          'available_capacity' => number_format($this->available_capacity,0,".","."),
           'image_cargo'=> DB::table('image_cargos')->select('image_cargos.img_url')->where('cargo_id', '=', $this->id)->first()->img_url,
         ];
     }
