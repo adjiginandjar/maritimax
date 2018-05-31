@@ -53,6 +53,14 @@ class BookingController extends Controller
         $booking = Booking::forceCreate($request->all());
         $cargo->save();
         DB::commit();
+
+        $user = $request->user();
+        $data = array('bookingid'=>$booking->id);
+        Mail::send('emails.forgotpassword', $data, function($message) use ($user){
+            $message->to($user->email, $user->name)
+                    ->subject('Booking Status');
+            $message->from('siapayangnanyasender@gmail.com','Admin Maritimax');
+        });
         return response()->json($booking, 201);
       }else{
         return response()->json(['error' => 'Invalid Email', 'message' => 'Email not Found'], 404);

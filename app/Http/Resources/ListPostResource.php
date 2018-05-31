@@ -18,6 +18,7 @@ class ListPostResource extends JsonResource
     {
         return [
           'id' => $this->id,
+          'title' => $this->title,
           'body' => $this->body,
           'slug' => $this->slug,
           'category_post' => $this->categoryPost->name,

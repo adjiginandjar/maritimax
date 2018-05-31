@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\ImageCargo;
+use Carbon\Carbon;
 
 class CargoResource extends JsonResource
 {
@@ -32,12 +33,13 @@ class CargoResource extends JsonResource
           'flag' => $this->flag,
           'year_build' => $this->year_build,
           'dimension'=> $this->dimension,
-          'curb_weight' => $this->crub_weight,
+          'curb_weight' => $this->curb_weight,
           'load_capacity' => $this->load_capacity,
-          'available_start' => $this->available_start,
-          'available_end' => $this->available_end,
+          'available_start' => (new Carbon($this->available_start))->format('d M Y'),
+          'available_end' => (new Carbon($this->available_end))->format('d M Y'),
           'booking_type' => $this->booking_type,
           'booking_status' => $this->booking_status,
+          'img_cargos' => $this->imageCargos,
         ];
     }
 }
