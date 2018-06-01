@@ -6,7 +6,7 @@
     <i class="fa fa-circle"></i>
 </li>
 <li>
-    <span>Category Cargo</span>
+    <span>Cargo</span>
     <i class="fa fa-circle"></i>
 </li>
 <li>
@@ -36,7 +36,7 @@
           <div class="form-group">
               <label class="col-md-3 control-label">Cargo Category</label>
               <div class="col-md-9">
-                  <select class="form-control">
+                  <select class="form-control" name="category_cargo_id">
                     @foreach ($categoryCargos as $item)
                       <option value="{{ $item->id }}">{{ $item->name }}</option>
                     @endforeach
@@ -46,7 +46,7 @@
           <div class="form-group">
               <label class="col-md-3 control-label">Cargo Model</label>
               <div class="col-md-9">
-                  <select class="form-control">
+                  <select class="form-control" name="cargo_model_id">
                     @foreach ($cargoModels as $item)
                       <option value="{{ $item->id }}">{{ $item->name }}</option>
                     @endforeach
@@ -56,16 +56,16 @@
           <div class="form-group">
               <label class="col-md-3 control-label">Booking Type</label>
               <div class="col-md-9">
-                  <select class="form-control">
-                      <option>Buy</option>
-                      <option>Charter</option>
+                  <select class="form-control" name="booking_type">
+                      <option value="buy">Buy</option>
+                      <option value="charter">Charter</option>
                   </select>
               </div>
           </div>
           <div class="form-group">
               <label class="col-md-3 control-label">Charter Type</label>
               <div class="col-md-9">
-                  <select class="form-control">
+                  <select class="form-control" name="charter_type_id">
                     @foreach ($charterTypes as $item)
                       <option value="{{ $item->id }}">{{ $item->name }}</option>
                     @endforeach

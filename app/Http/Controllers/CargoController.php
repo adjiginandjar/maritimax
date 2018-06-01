@@ -79,7 +79,10 @@ class CargoController extends Controller
      */
     public function edit(cargo $cargo)
     {
-        return view('si.pages.form.editcargo',compact('cargo'));
+      $categoryCargos = CategoryCargo::all();
+      $cargoModels = CargoModel::all();
+      $charterTypes = CharterType::all();
+        return view('si.pages.form.editcargo',compact('categoryCargos','cargoModels','charterTypes','cargo'));
     }
 
     /**
