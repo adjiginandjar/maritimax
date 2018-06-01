@@ -16,7 +16,7 @@
 
 @section('page-title')
 
-<h1 class="page-title"> Category Cargo Form
+<h1 class="page-title"> Cargo Form
     <!-- <small>bootstrap inputs, input groups, custom checkboxes and radio controls and more</small> -->
 </h1>
 @endsection
@@ -145,6 +145,13 @@
               <label class="col-md-3 control-label">Load Capacity </label>
               <div class="col-md-9">
                   <input type="text" name="load_capacity" value="{{ $cargo->load_capacity }}"  class="form-control" placeholder="Cargo Load Capacity ">
+                  <!-- <span class="help-block"> A block of help text. </span> -->
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="col-md-3 control-label">Available Capacity </label>
+              <div class="col-md-9">
+                  <input type="text" name="available_capacity" value="{{ $cargo->available_capacity }}"  class="form-control" placeholder="Cargo Available Capacity ">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>

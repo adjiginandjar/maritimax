@@ -35,7 +35,6 @@ Route::get('cargo/{cargo}', 'CargoController@getDetail');
 Route::get('posts/', 'PostController@index');
 Route::get('posts/paginate/{limit}', 'PostController@paginate');
 Route::get('posts/{post}', 'PostController@getDetail');
-Route::get('posts/{post}', 'PostController@show');
 Route::post('posts', 'PostController@store');
 Route::put('posts/{post}', 'PostController@update');
 Route::delete('posts/{post}', 'PostController@delete');

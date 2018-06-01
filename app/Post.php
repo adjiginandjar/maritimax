@@ -9,6 +9,16 @@ class Post extends Model
 
   protected $hidden = ['created_at','updated_at'];
 
+  protected $fillable =[
+    'title' ,
+    'body' ,
+    'slug' ,
+    'publish_status' ,
+    'category_id' ,
+    'img_cover' ,
+    'user_id' ,
+  ];
+
   public function categoryPost()
   {
       return $this->belongsTo('App\CategoryPost','category_id');

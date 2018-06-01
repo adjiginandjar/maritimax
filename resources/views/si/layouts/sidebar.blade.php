@@ -54,7 +54,7 @@
             </a>
             <ul class="sub-menu">
                 <li class="nav-item  ">
-                    <a href="components_date_time_pickers.html" class="nav-link ">
+                    <a href="{{ route('post.index') }}" class="nav-link ">
                         <span class="title">Articles</span>
                     </a>
                 </li>
