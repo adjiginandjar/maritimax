@@ -35,6 +35,7 @@ class CargoResource extends JsonResource
           'dimension'=> $this->dimension,
           'curb_weight' => number_format($this->curb_weight,0,".","."),
           'load_capacity' => number_format($this->load_capacity,0,".","."),
+          'available_capacity' => number_format($this->available_capacity,0,".","."),
           'available_start' => (new Carbon($this->available_start))->format('d M Y'),
           'available_end' => (new Carbon($this->available_end))->format('d M Y'),
           'booking_type' => $this->booking_type,
