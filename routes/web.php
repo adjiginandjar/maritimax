@@ -32,15 +32,12 @@ Route::get('/si', function () {
 * SI Category Cargo
 */
 Route::resource('/si/categorycargo', 'CategoryCargoController');
+Route::resource('/si/cargo', 'CargoController');
 
 // Route::get('/si/categorycargo', 'CategoryCargoController@index');
 // Route::get('/si/categorycargo/add', 'CategoryCargoController@create');
 // Route::get('/si/categorycargo/edit/{$categoryCargo}', 'CategoryCargoController@edit');
 // Route::post('/si/categorycargo/save', 'CategoryCargoController@store');
-
-Route::get('/si/cargo', function () {
-    return view('si/pages/cargo');
-});
 
 Route::get('/tuts', function () {
     return view('si/layouts/example');

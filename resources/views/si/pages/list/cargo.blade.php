@@ -16,17 +16,18 @@
 
 @section('page-title')
 
-<h1 class="page-title"> Category Cargo List
+<h1 class="page-title"> Cargo List
     <!-- <small>bootstrap inputs, input groups, custom checkboxes and radio controls and more</small> -->
 </h1>
 @endsection
 
 @section('formbody')
+
 <div class="row">
   <div class="col-lg-12 margin-tb">
 
               <div class="pull-right">
-                  <a class="btn btn-success" href="{{ route('categorycargo.create') }}"> Create New Category</a>
+                  <a class="btn btn-success" href="{{ route('cargo.create') }}"> Create New Cargo</a>
               </div>
           </div>
 </div>
@@ -36,16 +37,16 @@
             <th>Name</th>
             <th width="280px">Action</th>
         </tr>
-        @foreach ($categoryCargos as $categoryCargo)
+        @foreach ($cargos as $cargo)
         <tr>
             <td>{{ ++$i }}</td>
-            <td>{{ $categoryCargo->name }}</td>
+            <td>{{ $cargo->name }}</td>
             <td>
-                <a class="btn btn-primary" href="{{ route('categorycargo.edit',$categoryCargo->id) }}">Edit</a>
+                <a class="btn btn-primary" href="{{ route('cargo.edit',$cargo->id) }}">Edit</a>
             </td>
         </tr>
         @endforeach
   </table>
 
-  {!! $categoryCargos->links() !!}
+  {!! $cargos->links() !!}
 @endsection

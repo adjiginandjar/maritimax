@@ -14,10 +14,13 @@
 <!-- BEGIN THEME GLOBAL STYLES -->
 <link href="{{ URL::asset('admin/global/css/components.css') }}" rel="stylesheet" id="style_components" type="text/css" />
 <link href="{{ URL::asset('admin/global/css/plugins.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ URL::asset('admin/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ URL::asset('admin/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet" type="text/css" />
 <!-- END THEME GLOBAL STYLES -->
 <!-- BEGIN THEME LAYOUT STYLES -->
 <link href="{{ URL::asset('admin/layout/css/layout.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('admin/layout/css/themes/darkblue.css') }}" rel="stylesheet" type="text/css" id="style_color" />
 <link href="{{ URL::asset('admin/layout/css/custom.css') }}" rel="stylesheet" type="text/css" />
+
 <!-- END THEME LAYOUT STYLES -->
 <link rel="shortcut icon" href="favicon.ico" />

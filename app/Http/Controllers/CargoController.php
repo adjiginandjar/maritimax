@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Cargo;
+use App\CategoryCargo;
+use App\CargoModel;
+use App\CharterType;
 use App\Http\Resources\CargoResource;
 use App\Http\Resources\CargosResource;
 use App\Http\Resources\ListCargoSearchResource;
@@ -24,70 +27,101 @@ class CargoController extends Controller
      */
     public function index()
     {
-        return Cargo::all();
+        $cargos = Cargo::paginate(10);
+        return view('si.pages.list.cargo',compact('cargos'))
+            ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
-     * Display a listing of the resource.
+     * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function paginate($limit)
+    public function create()
     {
-        return ListCargoResource::collection(Cargo::paginate($limit));
+        $categoryCargos = CategoryCargo::all();
+        $cargoModels = CargoModel::all();
+        $charterTypes = CharterType::all();
+        return view('si.pages.form.addcargo',compact('categoryCargos','cargoModels','charterTypes'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+      $request->request->add(["available_capacity"=>$request['load_capacity']]);
+      $cargo = Cargo::Create($request->all());
+
+      return redirect()->route('cargo.index')
+                        ->with('success','Creating successfully.');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\cargo  $cargo
+     * @return \Illuminate\Http\Response
+     */
+    public function show(cargo $cargo)
+    {
+        return $cargo->load('imageCargos');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\cargo  $cargo
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(cargo $cargo)
+    {
+        return view('si.pages.form.editcargo',compact('cargo'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\cargo  $cargo
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, cargo $cargo)
+    {
+      $cargo->update($request->all());
+
+      return redirect()->route('cargo.index')
+                        ->with('success','Updating successfully.');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\cargo  $cargo
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(cargo $cargo)
+    {
 
     }
 
-    public function filter(Request $request, Cargo $cargo)
-    {
-        //return $request->input('city');
-        $cargo = $cargo->newQuery();
-        // if($request->has('description')){
-        //   $description = $request->input('description');
-        //   $searchValues = preg_split('/\s+/', $description, -1, PREG_SPLIT_NO_EMPTY);
-        //
-        //   $cargo->where(function ($q) use ($searchValues) {
-        //       foreach ($searchValues as $value) {
-        //         $q->orWhere('description', 'like', "%{$value}%");
-        //       }
-        //     })->get();
-        //
-        // }
-        $cargo->where('booking_status', 'available')->get();
-        $cargo->where('publish_status', 'publish')->get();
-        if($request->has('description')){
-          $cargo->where('description','like',$request->input('description'))->get();
-          $cargo->where('name','like',$request->input('description'))->get();
-        }
-        if($request->has('cargo_model_id')){
-          $cargo->where('cargo_model_id', $request->input('cargo_model_id'))->get();
-        }
-        if($request->has('charter_type_id')){
-          $cargo->where('charter_type_id', $request->input('charter_type_id'))->get();
-        }
-        if($request->has('available_date')){
-          $cargo->where('available_start', '<=',$request->input('available_date'))->get();
-        }
-        if($request->has('available_date')){
 
-          $cargo->where('available_end', '>=',$request->input('available_date'))->get()->format('Y-m-d');
-        }
-        if($request->has('location')){
-          $cargo->where('location', $request->input('location'))->get();
-        }
-        if($request->has('city')){
-          $cargo->where('city', $request->input('city'))->get();
-        }
-        if($request->has('booking_type')){
-          $cargo->where('booking_type', $request->input('booking_type'))->get();
-        }
-        if($request->has('available_capacity')){
-          $cargo->where('available_capacity', '>=',$request->input('available_capacity'))->get();
-        }
-        if($request->has('year_build')){
-          $cargo->where('year_build', $request->input('year_build'))->get();
-        }
-         return ListCargoResource::collection($cargo->get());
+    /**
+     * API Controller
+     *
+     */
+
+    public function getDetail(cargo $cargo)
+    {
+        return new CargoResource($cargo);
+    }
+
+    public function paginate($limit)
+    {
+        return ListCargoResource::collection(Cargo::paginate($limit));
 
     }
 
@@ -143,89 +177,5 @@ class CargoController extends Controller
         $cargos->appends($request->toArray());
         return $cargos;
 
-    }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-      $cargo = Cargo::create($request->all());
-
-      return response()->json($cargo, 201);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\cargo  $cargo
-     * @return \Illuminate\Http\Response
-     */
-    public function show(cargo $cargo)
-    {
-        return $cargo->load('imageCargos');
-    }
-
-    /**
-     * Display the detail resource.
-     *
-     * @param  \App\cargo  $cargo
-     * @return \Illuminate\Http\Response
-     */
-    public function getDetail(cargo $cargo)
-    {
-        return new CargoResource($cargo);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\cargo  $cargo
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(cargo $cargo)
-    {
-        return $cargo;
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\cargo  $cargo
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, cargo $cargo)
-    {
-      $cargo->update($request->all());
-
-      return response()->json($cargo, 200);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\cargo  $cargo
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(cargo $cargo)
-    {
-        $cargo->delete();
-
-        return response()->json(null,204);
     }
 }

@@ -30,7 +30,7 @@
             </a>
             <ul class="sub-menu">
                 <li class="nav-item  ">
-                    <a href="ui_metronic_grid.html" class="nav-link ">
+                    <a href="{{ route('cargo.index')  }}" class="nav-link ">
                         <span class="title">Cargo</span>
                     </a>
                 </li>

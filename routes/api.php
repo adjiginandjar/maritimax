@@ -24,14 +24,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 * Cargo API Controller
 *
 */
-Route::get('cargos/', 'CargoController@index');
 Route::get('cargos/paginate/{limit}', 'CargoController@paginate');
 Route::get('cargos/filter', 'CargoController@search');
 Route::get('cargo/{cargo}', 'CargoController@getDetail');
-Route::get('cargos/{cargo}', 'CargoController@show');
-Route::post('cargos', 'CargoController@store');
-Route::put('cargos/{cargo}', 'CargoController@update');
-Route::delete('cargos/{cargo}', 'CargoController@delete');
 
 /**
 * Article API Controller

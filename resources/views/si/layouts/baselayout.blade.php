@@ -88,15 +88,19 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="../assets/global/plugins/ie8.fix.js"></script>
 <![endif]-->
         <!-- BEGIN CORE PLUGINS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="{{ URL::asset('admin/vendor/ckeditor5-build-classic/ckeditor.js') }}" type="text/javascript"></script>
         <script src="{{ URL::asset('admin/vendor/plugins/jquery.min.js') }}" type="text/javascript"></script>
         <script src="{{ URL::asset('admin/vendor/plugins/bootstrap/js/bootstrap.js') }}" type="text/javascript"></script>
         <script src="{{ URL::asset('admin/vendor/plugins/js.cookie.min.js') }}" type="text/javascript"></script>
         <script src="{{ URL::asset('admin/vendor/plugins/jquery-slimscroll/jquery.slimscroll.js') }}" type="text/javascript"></script>
         <script src="{{ URL::asset('admin/vendor/plugins/jquery.blockui.min.js') }}" type="text/javascript"></script>
         <script src="{{ URL::asset('admin/vendor/plugins/bootstrap-switch/js/bootstrap-switch.js') }}" type="text/javascript"></script>
+
         <!-- END CORE PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src="{{ URL::asset('admin/global/scripts/app.js') }}" type="text/javascript"></script>
+        <script src="{{ URL::asset('admin/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}" type="text/javascript"></script>
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="{{ URL::asset('admin/layout/scripts/layout.js') }}" type="text/javascript"></script>
@@ -104,6 +108,8 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="{{ URL::asset('admin/layout/scripts/quick-sidebar.js') }}" type="text/javascript"></script>
         <script src="{{ URL::asset('admin/layout/scripts/quick-nav.js') }}" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
+
+        @yield('script')
         <script>
             $(document).ready(function()
             {
