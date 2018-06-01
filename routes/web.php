@@ -24,9 +24,7 @@ Route::get('/google', function () {
 *
 * SI
 */
-Route::get('/si', function () {
-    return view('si/layouts/baselayout');
-});
+Route::get('/si', 'CargoController@index');
 /**
 *
 * SI Category Cargo
