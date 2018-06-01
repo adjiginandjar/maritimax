@@ -17,7 +17,9 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+      $bookings = Booking::paginate(5);
+      return  view('si.pages.list.booking',compact('bookings'))
+          ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**

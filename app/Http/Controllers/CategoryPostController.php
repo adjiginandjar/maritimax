@@ -4,12 +4,8 @@ namespace App\Http\Controllers;
 
 use App\CategoryPost;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller as BaseController;
-use Kris\LaravelFormBuilder\FormBuilder;
-use App\Forms\CategoryForm;
-use Illuminate\Support\Facades\Log;
 
-class CategoryPostController extends BaseController
+class CategoryPostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +14,9 @@ class CategoryPostController extends BaseController
      */
     public function index()
     {
-        //
+      $categoryPosts = CategoryPost::paginate(5);
+      return  view('si.pages.list.categorypost',compact('categoryPosts'))
+          ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -26,14 +24,9 @@ class CategoryPostController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(FormBuilder $formBuilder)
+    public function create()
     {
-      $form = $formBuilder->create(CategoryForm::class, [
-          'method' => 'POST',
-          'url' => route('cats.store')
-      ]);
-
-      return view('si.forms.category.create', compact('form'));
+      return view('si.pages.form.addcategorypost');
     }
 
     /**
@@ -42,16 +35,12 @@ class CategoryPostController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(FormBuilder $formBuilder,Request $request)
+    public function store(Request $request)
     {
-      $form = $formBuilder->create(CategoryForm::class);
+      $categoryPost = CategoryPost::create($request->all());
 
-      if (!$form->isValid()) {
-          return redirect()->back()->withErrors($form->getErrors())->withInput();
-      }
-      //$categoryPost = CategoryPost::create($request->all());
-
-      return redirect()->back();
+      return redirect()->route('categorypost.index')
+                        ->with('success','Creating successfully.');
 
     }
 
@@ -61,7 +50,7 @@ class CategoryPostController extends BaseController
      * @param  \App\CategoryPost  $categoryPost
      * @return \Illuminate\Http\Response
      */
-    public function show(CategoryPost $categoryPost)
+    public function show(CategoryPost $categorypost)
     {
         //
     }
@@ -72,9 +61,9 @@ class CategoryPostController extends BaseController
      * @param  \App\CategoryPost  $categoryPost
      * @return \Illuminate\Http\Response
      */
-    public function edit(CategoryPost $categoryPost)
+    public function edit(CategoryPost $categorypost)
     {
-        //
+        return view('si.pages.form.editcategorypost',compact('categorypost'));
     }
 
     /**
@@ -84,9 +73,12 @@ class CategoryPostController extends BaseController
      * @param  \App\CategoryPost  $categoryPost
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CategoryPost $categoryPost)
+    public function update(Request $request, CategoryPost $categorypost)
     {
-        //
+      $categorypost->update($request->all());
+
+      return redirect()->route('categorypost.index')
+                        ->with('success','Updating successfully.');
     }
 
     /**

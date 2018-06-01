@@ -6,7 +6,7 @@
     <i class="fa fa-circle"></i>
 </li>
 <li>
-    <span>Category Post</span>
+    <span>Booking</span>
     <i class="fa fa-circle"></i>
 </li>
 <li>
@@ -16,36 +16,29 @@
 
 @section('page-title')
 
-<h1 class="page-title"> Category Post List
+<h1 class="page-title"> Booking List
     <!-- <small>bootstrap inputs, input groups, custom checkboxes and radio controls and more</small> -->
 </h1>
 @endsection
 
 @section('formbody')
-<div class="row">
-  <div class="col-lg-12 margin-tb">
 
-              <div class="pull-right">
-                  <a class="btn btn-success" href="{{ route('categorypost.create') }}"> Create New Category</a>
-              </div>
-          </div>
-</div>
   <table class="table table-bordered">
         <tr>
             <th>No</th>
             <th>Name</th>
             <th width="280px">Action</th>
         </tr>
-        @foreach ($categoryPosts as $categoryPost)
+        @foreach ($bookings as $booking)
         <tr>
             <td>{{ ++$i }}</td>
-            <td>{{ $categoryPost->name }}</td>
+            <td>{{ $booking->fullname }}</td>
             <td>
-                <a class="btn btn-primary" href="{{ route('categorypost.edit',$categoryPost->id) }}">Edit</a>
+                <a class="btn btn-primary" href="{{ route('booking.edit',$booking->id) }}">Edit</a>
             </td>
         </tr>
         @endforeach
   </table>
 
-  {!! $categoryPosts->links() !!}
+  {!! $bookings->links() !!}
 @endsection

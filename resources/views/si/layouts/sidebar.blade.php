@@ -40,7 +40,7 @@
                     </a>
                 </li>
                 <li class="nav-item  ">
-                    <a href="ui_general.html" class="nav-link ">
+                    <a href="{{ route('cargomodel.index') }}" class="nav-link ">
                         <span class="title">Cargo Model</span>
                     </a>
                 </li>
@@ -59,7 +59,7 @@
                     </a>
                 </li>
                 <li class="nav-item  ">
-                    <a href="components_color_pickers.html" class="nav-link ">
+                    <a href="{{ route('categorypost.index') }}" class="nav-link ">
                         <span class="title">Category Article</span>
                         <span class="badge badge-danger">2</span>
                     </a>
@@ -70,14 +70,14 @@
         <li class="nav-item ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-settings"></i>
-                <span class="title">User</span>
+                <span class="title">Booking</span>
                 <span class="selected"></span>
                 <span class="arrow open"></span>
             </a>
             <ul class="sub-menu">
                 <li class="nav-item ">
-                    <a href="form_controls.html" class="nav-link ">
-                        <span class="title">User</span>
+                    <a href="{{ route('booking.index') }}" class="nav-link ">
+                        <span class="title">Bookings</span>
                         <span class="selected"></span>
                     </a>
                 </li>

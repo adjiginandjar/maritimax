@@ -32,9 +32,11 @@ Route::get('/si', function () {
 * SI Category Cargo
 */
 Route::resource('/si/categorycargo', 'CategoryCargoController');
+Route::resource('/si/categorypost', 'CategoryPostController');
 Route::resource('/si/cargomodel', 'CargoModelController');
 Route::resource('/si/cargo', 'CargoController');
 Route::resource('/si/post', 'PostController');
+Route::resource('/si/booking', 'BookingController');
 
 // Route::get('/si/categorycargo', 'CategoryCargoController@index');
 // Route::get('/si/categorycargo/add', 'CategoryCargoController@create');
