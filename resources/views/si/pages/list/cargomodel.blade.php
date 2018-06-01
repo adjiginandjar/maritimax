@@ -26,7 +26,7 @@
   <div class="col-lg-12 margin-tb">
 
               <div class="pull-right">
-                  <a class="btn btn-success" href="{{ route('categorycargo.create') }}"> Create New Category</a>
+                  <a class="btn btn-success" href="{{ route('cargomodel.create') }}"> Create New Category</a>
               </div>
           </div>
 </div>
@@ -36,16 +36,16 @@
             <th>Name</th>
             <th width="280px">Action</th>
         </tr>
-        @foreach ($categoryCargos as $categoryCargo)
+        @foreach ($cargoModels as $cargoModel)
         <tr>
             <td>{{ ++$i }}</td>
-            <td>{{ $categoryCargo->name }}</td>
+            <td>{{ $cargoModel->name }}</td>
             <td>
-                <a class="btn btn-primary" href="{{ route('categorycargo.edit',$categoryCargo->id) }}">Edit</a>
+                <a class="btn btn-primary" href="{{ route('cargomodel.edit',$cargoModel->id) }}">Edit</a>
             </td>
         </tr>
         @endforeach
   </table>
 
-  {!! $categoryCargos->links() !!}
+  {!! $cargoModels->links() !!}
 @endsection

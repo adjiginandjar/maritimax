@@ -69,12 +69,12 @@ Route::get('category-cargo', 'CategoryCargoController@indexAPI');
 * Model Cargo
 *
 */
-Route::get('model-cargo', 'CargoModelController@index');
+Route::get('model-cargo', 'CargoModelController@indexAPI');
 /**
 * Charter Type
 *
 */
-Route::get('charter-type', 'CharterTypeController@index');
+Route::get('charter-type', 'CharterTypeController@indexAPI');
 
 /**
 *

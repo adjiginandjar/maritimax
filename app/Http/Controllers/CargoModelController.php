@@ -14,7 +14,9 @@ class CargoModelController extends Controller
      */
     public function index()
     {
-        return CargoModel::all();
+      $cargoModels = CargoModel::paginate(5);
+      return  view('si.pages.list.cargomodel',compact('cargoModels'))
+          ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -24,7 +26,7 @@ class CargoModelController extends Controller
      */
     public function create()
     {
-        //
+        return view('si.pages.form.addcargomodel');
     }
 
     /**
@@ -35,7 +37,10 @@ class CargoModelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $cargoModel = CargoModel::create($request->all());
+
+      return redirect()->route('cargomodel.index')
+                        ->with('success','Creating successfully.');
     }
 
     /**
@@ -44,7 +49,7 @@ class CargoModelController extends Controller
      * @param  \App\CargoModel  $cargoModel
      * @return \Illuminate\Http\Response
      */
-    public function show(CargoModel $cargoModel)
+    public function show(CargoModel $cargomodel)
     {
         //
     }
@@ -55,9 +60,9 @@ class CargoModelController extends Controller
      * @param  \App\CargoModel  $cargoModel
      * @return \Illuminate\Http\Response
      */
-    public function edit(CargoModel $cargoModel)
+    public function edit(CargoModel $cargomodel)
     {
-        //
+        return view('si.pages.form.editcargomodel',compact('cargomodel'));
     }
 
     /**
@@ -67,9 +72,12 @@ class CargoModelController extends Controller
      * @param  \App\CargoModel  $cargoModel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CargoModel $cargoModel)
+    public function update(Request $request, CargoModel $cargomodel)
     {
-        //
+      $cargomodel->update($request->all());
+
+      return redirect()->route('cargomodel.index')
+                        ->with('success','Updating successfully.');
     }
 
     /**
@@ -81,5 +89,10 @@ class CargoModelController extends Controller
     public function destroy(CargoModel $cargoModel)
     {
         //
+    }
+
+    public function indexAPI()
+    {
+        return CargoModel::all();
     }
 }

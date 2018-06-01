@@ -6,7 +6,7 @@
     <i class="fa fa-circle"></i>
 </li>
 <li>
-    <span>Category Cargo</span>
+    <span>Cargo Model</span>
     <i class="fa fa-circle"></i>
 </li>
 <li>
@@ -16,21 +16,21 @@
 
 @section('page-title')
 
-<h1 class="page-title"> Category Cargo Form
+<h1 class="page-title"> Cargo Model Form
     <!-- <small>bootstrap inputs, input groups, custom checkboxes and radio controls and more</small> -->
 </h1>
 @endsection
 
 @section('formbody')
 <div class="portlet-body form">
-  <form class="form-horizontal" role="form" action="{{action('CategoryCargoController@update',$categorycargo)}}" method="POST">
+  <form class="form-horizontal" role="form" action="{{ action('CargoModelController@update',$cargomodel) }}" method="POST">
     @csrf
           @method('PUT')
       <div class="form-body">
           <div class="form-group">
               <label class="col-md-3 control-label">Category Cargo Name</label>
               <div class="col-md-9">
-                  <input type="text" name="name" value="{{ $categorycargo->name }}" class="form-control" placeholder="Category Cargo Name">
+                  <input type="text" name="name" value="{{ $cargomodel->name }}" class="form-control" placeholder="Cargo Model Name">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
