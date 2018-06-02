@@ -6,6 +6,7 @@ use App\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Cargo;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Resources\BookingResource;
 
 class BookingController extends Controller
