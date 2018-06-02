@@ -53,7 +53,6 @@ class BookingController extends Controller
           $cargo->available_capacity = $cargo->available_capacity - $request->input('capacity');
           if($cargo->available_capacity <= 0){
             $cargo->booking_status = 'booked';
-
           }
 
           DB::beginTransaction();
@@ -71,9 +70,11 @@ class BookingController extends Controller
           });
           return response()->json($booking, 201);
 
+        }else{
+          return response()->json(['error' => 'Too Many Booking', 'message' => 'This item has been booked by you'], 404);
         }
       }else{
-        return response()->json(['error' => 'Invalid Email', 'message' => 'Email not Found'], 404);
+        return response()->json(['error' => 'Too Many Capacity', 'message' => 'Capacity Reach Maximum load'], 404);
       }
 
 
