@@ -18,7 +18,7 @@ class CreateContactUsesTable extends Migration
             $table->string('fullname');
             $table->string('phone_number');
             $table->string('email');
-            $table->string('destination_form');
+            $table->string('topic');
             $table->text('question');
             $table->integer('user_id')->nullable()->unsigned();
             $table->foreign('user_id')->references('id')->on('users');

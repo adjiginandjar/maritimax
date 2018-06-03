@@ -138,4 +138,18 @@ class BookingController extends Controller
     {
         //
     }
+
+    public function isBooked(Request $request)
+    {
+      $result = false;
+      $user = $request->user();
+      $isBookingExsist = Booking::where('user_id',$user->id)
+                                ->where('cargo_id',$request->input('cargo_id'))
+                                ->first();
+      if($isBookingExsist){
+        $result = true;
+      }
+
+      return response()->json(['data' => $result], 201);
+    }
 }

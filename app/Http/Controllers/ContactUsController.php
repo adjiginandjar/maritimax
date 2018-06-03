@@ -14,7 +14,9 @@ class ContactUsController extends Controller
      */
     public function index()
     {
-        //
+      $contactUs = ContactUs::paginate(5);
+      return  view('si.pages.list.contactUs',compact('cargoModels'))
+          ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -35,7 +37,9 @@ class ContactUsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $contactus = ContactUs::create($request->all());
+
+        return response()->json($contactus, 201);
     }
 
     /**
@@ -44,7 +48,7 @@ class ContactUsController extends Controller
      * @param  \App\ContactUs  $contactUs
      * @return \Illuminate\Http\Response
      */
-    public function show(ContactUs $contactUs)
+    public function show(ContactUs $contactus)
     {
         //
     }
@@ -55,7 +59,7 @@ class ContactUsController extends Controller
      * @param  \App\ContactUs  $contactUs
      * @return \Illuminate\Http\Response
      */
-    public function edit(ContactUs $contactUs)
+    public function edit(ContactUs $contactus)
     {
         //
     }
@@ -67,7 +71,7 @@ class ContactUsController extends Controller
      * @param  \App\ContactUs  $contactUs
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ContactUs $contactUs)
+    public function update(Request $request, ContactUs $contactus)
     {
         //
     }
@@ -78,7 +82,7 @@ class ContactUsController extends Controller
      * @param  \App\ContactUs  $contactUs
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ContactUs $contactUs)
+    public function destroy(ContactUs $contactus)
     {
         //
     }
