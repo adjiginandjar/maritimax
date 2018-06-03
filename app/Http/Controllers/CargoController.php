@@ -140,7 +140,7 @@ class CargoController extends Controller
         $query->where('booking_status', 'available');
         $query->where('cargos.publish_status', 'publish');
         if($request->has('description')){
-          $query->where('description','like',$request->input('description'));
+          $query->where('description','like','%'.$request->input('description').'%');
         }
         if($request->has('cargo_model_id')){
           $query->where('cargo_model_id', $request->input('cargo_model_id'));

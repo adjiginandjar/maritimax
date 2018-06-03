@@ -49,7 +49,7 @@ class BookingController extends Controller
         $isBookingExsist = Booking::where('user_id',$user->id)
                                   ->where('cargo_id',$cargo->id)
                                   ->first();
-        if($isBookingExsist){
+        if(!$isBookingExsist){
 
           $cargo->available_capacity = $cargo->available_capacity - $request->input('capacity');
           if($cargo->available_capacity <= 0){
@@ -63,12 +63,12 @@ class BookingController extends Controller
           $cargo->save();
           DB::commit();
 
-          $data = array('bookingid'=>$booking->id);
-          Mail::send('emails.bookingconfirm', $data, function($message) use ($user){
-              $message->to($user->email, $user->name)
-                      ->subject('Booking Status');
-              $message->from('siapayangnanyasender@gmail.com','Admin Maritimax');
-          });
+         // $data = array('bookingid'=>$booking->id);
+         // Mail::send('emails.bookingconfirm', $data, function($message) use ($user){
+         //     $message->to($user->email, $user->name)
+         //             ->subject('Booking Status');
+         //     $message->from('siapayangnanyasender@gmail.com','Admin Maritimax');
+         // });
           return response()->json($booking, 201);
 
         }else{
