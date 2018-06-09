@@ -22,6 +22,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <head>
       <title>Martimax Admin</title>
           @include('si.includes.head')
+          @yield('head')
     </head>
     <!-- END HEAD -->
 

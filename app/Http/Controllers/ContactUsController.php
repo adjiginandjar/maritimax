@@ -14,8 +14,8 @@ class ContactUsController extends Controller
      */
     public function index()
     {
-      $contactUs = ContactUs::paginate(5);
-      return  view('si.pages.list.contactUs',compact('cargoModels'))
+      $contactuses = ContactUs::paginate(5);
+      return  view('si.pages.list.contactus',compact('contactuses'))
           ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 

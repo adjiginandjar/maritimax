@@ -81,6 +81,12 @@
                         <span class="selected"></span>
                     </a>
                 </li>
+                <li class="nav-item ">
+                    <a href="{{ route('contactus.index') }}" class="nav-link ">
+                        <span class="title">Request</span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
             </ul>
         </li>
     </ul>

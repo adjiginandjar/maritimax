@@ -53,8 +53,9 @@ class CargoController extends Controller
      */
     public function store(Request $request)
     {
-      $request->request->add(["available_capacity"=>$request['load_capacity']]);
-      $cargo = Cargo::Create($request->all());
+      info($request);
+      // $request->request->add(["available_capacity"=>$request['load_capacity']]);
+      // $cargo = Cargo::Create($request->all());
 
       return redirect()->route('cargo.index')
                         ->with('success','Creating successfully.');

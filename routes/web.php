@@ -24,17 +24,18 @@ Route::get('/google', function () {
 *
 * SI
 */
-Route::get('/si', 'CargoController@index');
+Route::get('/si', 'CargoController@index')->middleware('auth');
 /**
 *
 * SI Category Cargo
 */
-Route::resource('/si/categorycargo', 'CategoryCargoController');
-Route::resource('/si/categorypost', 'CategoryPostController');
-Route::resource('/si/cargomodel', 'CargoModelController');
-Route::resource('/si/cargo', 'CargoController');
-Route::resource('/si/post', 'PostController');
-Route::resource('/si/booking', 'BookingController');
+Route::resource('/si/categorycargo', 'CategoryCargoController')->middleware('auth');
+Route::resource('/si/categorypost', 'CategoryPostController')->middleware('auth');
+Route::resource('/si/cargomodel', 'CargoModelController')->middleware('auth');
+Route::resource('/si/cargo', 'CargoController')->middleware('auth');
+Route::resource('/si/post', 'PostController')->middleware('auth');
+Route::resource('/si/booking', 'BookingController')->middleware('auth');
+Route::resource('/si/contactus', 'ContactUsController')->middleware('auth');
 
 // Route::get('/si/categorycargo', 'CategoryCargoController@index');
 // Route::get('/si/categorycargo/add', 'CategoryCargoController@create');
@@ -62,5 +63,22 @@ Route::get('/email','UserController@testEmail');
 // Route::get('callback/google', 'Auth\LoginController@handleProviderCallback');
 
 // Auth::routes();
+Route::get('/si/login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('/si/login', 'Auth\LoginController@login');
+Route::post('/si/logout', 'Auth\LoginController@logout')->name('logout');
+
+// Registration Routes...
+Route::get('/si/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('/si/register', 'Auth\RegisterController@register');
+
+// Password Reset Routes...
+Route::get('/si/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('/si/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+Route::get('/si/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('/si/password/reset', 'Auth\ResetPasswordController@reset');
+// Route::resource('/si/login','LoginController');
+// Route::get( '/si/login','app\Http\Controllers\Auth\LoginController')->name('login');
+// Route::post('/si/logout','App\Http\Controllers\Auth\LoginController')->name('logout');
+
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -35,12 +35,16 @@
         <tr>
             <th>No</th>
             <th>Title</th>
-            <th width="280px">Action</th>
+            <th>Category</th>
+            <th>Creator</th>
+            <th width="100px">Action</th>
         </tr>
         @foreach ($posts as $post)
         <tr>
             <td>{{ ++$i }}</td>
             <td>{{ $post->title }}</td>
+            <td>{{ $post->categoryPost->name }}</td>
+            <td>{{ $post->creator->name }}</td>
             <td>
                 <a class="btn btn-primary" href="{{ route('post.edit',$post->id) }}">Edit</a>
             </td>

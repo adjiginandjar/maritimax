@@ -27,14 +27,28 @@
         <tr>
             <th>No</th>
             <th>Name</th>
-            <th width="280px">Action</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Cargo</th>
+            <th>Destination From</th>
+            <th>Destination To</th>
+            <th>Capacity</th>
+            <th>Date</th>
+            <th width="80px">Action</th>
         </tr>
         @foreach ($bookings as $booking)
         <tr>
             <td>{{ ++$i }}</td>
             <td>{{ $booking->fullname }}</td>
+            <td>{{ $booking->phone_number }}</td>
+            <td>{{ $booking->email }}</td>
+            <td>{{ $booking->cargo->name }}</td>
+            <td>{{ $booking->destination_to }}</td>
+            <td>{{ $booking->destination_from }}</td>
+            <td>{{ $booking->capacity }}</td>
+            <td>{{ $booking->date }}</td>
             <td>
-                <a class="btn btn-primary" href="{{ route('booking.edit',$booking->id) }}">Edit</a>
+                <a class="btn btn-primary" href="{{ route('booking.show',$booking->id) }}">Show</a>
             </td>
         </tr>
         @endforeach

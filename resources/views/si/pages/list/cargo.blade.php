@@ -6,7 +6,7 @@
     <i class="fa fa-circle"></i>
 </li>
 <li>
-    <span>Category Cargo</span>
+    <span>Cargo</span>
     <i class="fa fa-circle"></i>
 </li>
 <li>
@@ -35,12 +35,29 @@
         <tr>
             <th>No</th>
             <th>Name</th>
-            <th width="280px">Action</th>
+            <th>Model</th>
+            <th>Category</th>
+            <th>City</th>
+            <th>Location</th>
+            <th>Price</th>
+            <th>Available Capacity</th>
+            <th>Available Start</th>
+            <th>Available End</th>
+
+            <th width="100px">Action</th>
         </tr>
         @foreach ($cargos as $cargo)
         <tr>
             <td>{{ ++$i }}</td>
             <td>{{ $cargo->name }}</td>
+            <td>{{ $cargo->cargoModel->name }}</td>
+            <td>{{ $cargo->categoryCargo->name }}</td>
+            <td>{{ $cargo->city }}</td>
+            <td>{{ $cargo->location }}</td>
+            <td>{{ $cargo->price }}</td>
+            <td>{{ $cargo->available_capacity }}</td>
+            <td>{{ $cargo->available_start }}</td>
+            <td>{{ $cargo->available_end }}</td>
             <td>
                 <a class="btn btn-primary" href="{{ route('cargo.edit',$cargo->id) }}">Edit</a>
             </td>

@@ -88,3 +88,10 @@ Route::get('charter-type', 'CharterTypeController@indexAPI');
 * Cities
 */
 Route::get('cities', 'CitiesController@autocomplete');
+
+/**
+* Upload Controller
+*
+*/
+
+Route::post('upload/single', 'UploadController@uploadSingle');

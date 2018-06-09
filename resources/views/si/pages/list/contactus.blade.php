@@ -6,7 +6,7 @@
     <i class="fa fa-circle"></i>
 </li>
 <li>
-    <span>Cargo Model</span>
+    <span>Request</span>
     <i class="fa fa-circle"></i>
 </li>
 <li>
@@ -16,36 +16,37 @@
 
 @section('page-title')
 
-<h1 class="page-title"> Cargo Model List
+<h1 class="page-title"> Request List
     <!-- <small>bootstrap inputs, input groups, custom checkboxes and radio controls and more</small> -->
 </h1>
 @endsection
 
 @section('formbody')
-<div class="row">
-  <div class="col-lg-12 margin-tb">
 
-              <div class="pull-right">
-                  <a class="btn btn-success" href="{{ route('cargomodel.create') }}"> Create New Category</a>
-              </div>
-          </div>
-</div>
   <table class="table table-bordered">
         <tr>
             <th>No</th>
             <th>Name</th>
-            <th width="280px">Action</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Topic</th>
+            <th>Question</th>
+            <th width="100px">Action</th>
         </tr>
-        @foreach ($cargoModels as $cargoModel)
+        @foreach ($contactuses as $contactus)
         <tr>
             <td>{{ ++$i }}</td>
-            <td>{{ $cargoModel->name }}</td>
+            <td>{{ $contactus->fullname }}</td>
+            <td>{{ $contactus->phone_number }}</td>
+            <td>{{ $contactus->email }}</td>
+            <td>{{ $contactus->topic }}</td>
+            <td>{{ $contactus->question }}</td>
             <td>
-                <a class="btn btn-primary" href="{{ route('cargomodel.edit',$cargoModel->id) }}">Edit</a>
+                <a class="btn btn-primary" href="{{ route('contactus.show',$contactus->id) }}">Show</a>
             </td>
         </tr>
         @endforeach
   </table>
 
-  {!! $cargoModels->links() !!}
+  {!! $contactuses->links() !!}
 @endsection
