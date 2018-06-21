@@ -13,7 +13,7 @@
 use App\User;
 
 Route::get('/', function () {
-    return view('redirect');
+    return redirect('/si');
 });
 Route::get('/google', function () {
     return view('redirect');
