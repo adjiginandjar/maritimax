@@ -6,6 +6,7 @@ use App\Cargo;
 use App\CategoryCargo;
 use App\CargoModel;
 use App\CharterType;
+use App\ImageCargo;
 use App\Http\Resources\CargoResource;
 use App\Http\Resources\CargosResource;
 use App\Http\Resources\ListCargoSearchResource;
@@ -53,12 +54,22 @@ class CargoController extends Controller
      */
     public function store(Request $request)
     {
-      info($request);
-      // $request->request->add(["available_capacity"=>$request['load_capacity']]);
-      // $cargo = Cargo::Create($request->all());
+      // info($request);
+      $request->request->add(["available_capacity"=>$request['load_capacity']]);
+      $cargo = Cargo::Create($request->all());
 
-      return redirect()->route('cargo.index')
-                        ->with('success','Creating successfully.');
+      $images = $request->images;
+      foreach ($images as $image) {
+        ImageCargo::forceCreate([
+          'img_url' => $image,
+          'cargo_id' => $cargo->id,
+        ]);
+      }
+
+
+
+      // return redirect()->route('cargo.index')
+      //                   ->with('success','Creating successfully.');
     }
 
     /**
@@ -81,9 +92,11 @@ class CargoController extends Controller
     public function edit(cargo $cargo)
     {
       $categoryCargos = CategoryCargo::all();
+      info($cargo);
       $cargoModels = CargoModel::all();
       $charterTypes = CharterType::all();
-        return view('si.pages.form.editcargo',compact('categoryCargos','cargoModels','charterTypes','cargo'));
+      $imageCargos = ImageCargo::where('cargo_id',$cargo->id)->get();
+        return view('si.pages.form.editcargo',compact('categoryCargos','cargoModels','charterTypes','cargo','imageCargos'));
     }
 
     /**
@@ -95,7 +108,24 @@ class CargoController extends Controller
      */
     public function update(Request $request, cargo $cargo)
     {
+
       $cargo->update($request->all());
+
+      ImageCargo::where('cargo_id', $cargo->id)->delete();
+
+      foreach ($request->images as $image) {
+        ImageCargo::forceCreate([
+          'img_url' => $image,
+          'cargo_id' => $cargo->id,
+        ]);
+      }
+
+      foreach ($request->exist as $imageExist) {
+        ImageCargo::forceCreate([
+          'img_url' => $imageExist,
+          'cargo_id' => $cargo->id,
+        ]);
+      }
 
       return redirect()->route('cargo.index')
                         ->with('success','Updating successfully.');
