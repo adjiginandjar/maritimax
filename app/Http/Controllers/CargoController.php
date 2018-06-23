@@ -92,7 +92,7 @@ class CargoController extends Controller
     public function edit(cargo $cargo)
     {
       $categoryCargos = CategoryCargo::all();
-      info($cargo);
+
       $cargoModels = CargoModel::all();
       $charterTypes = CharterType::all();
       $imageCargos = ImageCargo::where('cargo_id',$cargo->id)->get();
@@ -113,14 +113,15 @@ class CargoController extends Controller
 
       ImageCargo::where('cargo_id', $cargo->id)->delete();
 
-      foreach ($request->images as $image) {
+      $images = $request->images;
+      foreach ($images as $image) {
         ImageCargo::forceCreate([
           'img_url' => $image,
           'cargo_id' => $cargo->id,
         ]);
       }
-
-      foreach ($request->exist as $imageExist) {
+      $exist = $request->exist;
+      foreach ($exist as $imageExist) {
         ImageCargo::forceCreate([
           'img_url' => $imageExist,
           'cargo_id' => $cargo->id,
