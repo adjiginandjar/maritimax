@@ -111,21 +111,26 @@ class CargoController extends Controller
 
       $cargo->update($request->all());
 
-      ImageCargo::where('cargo_id', $cargo->id)->delete();
-
-      $images = $request->images;
-      foreach ($images as $image) {
-        ImageCargo::forceCreate([
-          'img_url' => $image,
-          'cargo_id' => $cargo->id,
-        ]);
+      if($request->has('images') || $request->has('exist')){
+        ImageCargo::where('cargo_id', $cargo->id)->delete();
       }
+      if($request->has('images')){
+        $images = $request->images;
+        foreach ($images as $image) {
+          ImageCargo::forceCreate([
+            'img_url' => $image,
+            'cargo_id' => $cargo->id,
+          ]);
+        }
+      }
+      if($request->has('exist')){
       $exist = $request->exist;
-      foreach ($exist as $imageExist) {
-        ImageCargo::forceCreate([
-          'img_url' => $imageExist,
-          'cargo_id' => $cargo->id,
-        ]);
+        foreach ($exist as $imageExist) {
+          ImageCargo::forceCreate([
+            'img_url' => $imageExist,
+            'cargo_id' => $cargo->id,
+          ]);
+        }
       }
 
       return redirect()->route('cargo.index')
