@@ -18,6 +18,8 @@ class ListCargoSearchResource extends JsonResource
      */
     public function toArray($request)
     {
+        //$img = ;
+        // info($this->image_cargo);
         return [
           'id' => $this->id,
           'name' => $this->name,
@@ -32,7 +34,17 @@ class ListCargoSearchResource extends JsonResource
           'cargo_model' => $this->cargo_model,
           'load_capacity' => number_format($this->load_capacity,0,".","."),
           'available_capacity' => number_format($this->available_capacity,0,".","."),
-          'image_cargo'=> DB::table('image_cargos')->select('image_cargos.img_url')->where('cargo_id', '=', $this->id)->first()->img_url,
+          'image_cargo' => $this->when(true, function () {
+              $img = DB::table('image_cargos')->select('image_cargos.img_url')->where('cargo_id', '=', $this->id);
+              info($img->exists());
+              if($img->exists()){
+                return $img->first()->img_url;//DB::table('image_cargos')->select('image_cargos.img_url')->where('cargo_id', '=', $this->id)->first()->img_url;
+              }else{
+                return $img->first();
+              }
+
+          }),
+          // 'image_cargo'=> DB::table('image_cargos')->select('image_cargos.img_url')->where('cargo_id', '=', $this->id)->first(),
         ];
     }
 }
