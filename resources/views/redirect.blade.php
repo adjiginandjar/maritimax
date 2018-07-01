@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <meta name="google-signin-client_id" content="754704197804-huug8uvclj4nqdhjd6midoggbr7umcuk.apps.googleusercontent.com">
+  <meta name="google-signin-client_id" content="442332255212-vaehsnvf1k2vl4fpp4gavkttbljb3f5t.apps.googleusercontent.com">
 </head>
 <script>
   var GoogleAuth;
@@ -21,9 +21,9 @@
     // Get API key and client ID from API Console.
     // 'scope' field specifies space-delimited list of access scopes.
     gapi.client.init({
-        'apiKey': 'AIzaSyC-i6JrBmc98fY3_G7rX66UMm37tf0x2OI',
+        'apiKey': 'AIzaSyAC_w-cTVX--HwrjNKqSIgY39PH1HNaelw',
         'discoveryDocs': [discoveryUrl],
-        'clientId': '754704197804-huug8uvclj4nqdhjd6midoggbr7umcuk.apps.googleusercontent.com',
+        'clientId': '442332255212-vaehsnvf1k2vl4fpp4gavkttbljb3f5t.apps.googleusercontent.com',
         'scope': SCOPE
     }).then(function () {
       GoogleAuth = gapi.auth2.getAuthInstance();

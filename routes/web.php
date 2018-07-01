@@ -15,7 +15,7 @@ use App\User;
 Route::get('/', function () {
     return redirect('/si');
 });
-Route::get('/google', function () {
+Route::get('si/google', function () {
     return view('redirect');
 });
 
