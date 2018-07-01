@@ -6,6 +6,7 @@ use App\Post;
 use Illuminate\Http\Request;
 use App\Http\Resources\ListPostResource;
 use App\Http\Resources\ListPostsResource;
+use App\Http\Resources\PostResource;
 use App\CategoryPost;
 
 class PostController extends Controller
@@ -121,7 +122,7 @@ class PostController extends Controller
     }
 
     public function getDetail(Post $post){
-      return $post;
+      return new PostResource($post);
     }
 
     public function paginate($limit)

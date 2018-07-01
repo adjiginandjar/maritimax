@@ -13,6 +13,6 @@ class CitiesController extends Controller
     if($request->has('keyword')){
       $cities->where('name','like', '%'.$request->input('keyword').'%')->get();
     }
-    return $cities->limit(5)->get();
+    return $cities->get();
   }
 }
