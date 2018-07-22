@@ -68,8 +68,8 @@ class CargoController extends Controller
 
 
 
-      // return redirect()->route('cargo.index')
-      //                   ->with('success','Creating successfully.');
+      return redirect()->route('cargo.index')
+                        ->with('success','Creating successfully.');
     }
 
     /**

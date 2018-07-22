@@ -23,14 +23,14 @@
 
 @section('formbody')
 <div class="portlet-body form">
-  <form class="form-horizontal" role="form" action="{{action('CategoryCargoController@update',$categorycargo)}}" method="POST">
+  <form class="form-horizontal" role="form" action="{{action('CategoryCargoController@update',$categorycargo)}}" method="POST" data-parsley-validate>
     @csrf
           @method('PUT')
       <div class="form-body">
           <div class="form-group">
               <label class="col-md-3 control-label">Category Cargo Name</label>
               <div class="col-md-9">
-                  <input type="text" name="name" value="{{ $categorycargo->name }}" class="form-control" placeholder="Category Cargo Name">
+                  <input type="text" name="name" value="{{ $categorycargo->name }}" class="form-control" placeholder="Category Cargo Name" data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>

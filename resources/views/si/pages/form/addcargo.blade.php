@@ -35,20 +35,20 @@
 
 @section('formbody')
 <div class="portlet-body form">
-  <form class="form-horizontal" role="form" action="{{url('si/cargo')}}" method="POST">
+  <form class="form-horizontal" role="form" action="{{url('si/cargo')}}" method="POST" data-parsley-validate>
     @csrf
       <div class="form-body">
           <div class="form-group">
               <label class="col-md-3 control-label">Cargo Name</label>
               <div class="col-md-9">
-                  <input type="text" name="name" class="form-control" placeholder="Category Cargo Name">
+                  <input type="text" name="name" class="form-control" placeholder="Category Cargo Name" data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
           <div class="form-group">
               <label class="col-md-3 control-label">Cargo Category</label>
               <div class="col-md-9">
-                  <select class="form-control" name="category_cargo_id">
+                  <select class="form-control" name="category_cargo_id" data-parsley-required="true">
                     @foreach ($categoryCargos as $item)
                       <option value="{{ $item->id }}">{{ $item->name }}</option>
                     @endforeach
@@ -58,7 +58,7 @@
           <div class="form-group">
               <label class="col-md-3 control-label">Cargo Model</label>
               <div class="col-md-9">
-                  <select class="form-control" name="cargo_model_id">
+                  <select class="form-control" name="cargo_model_id" data-parsley-required="true">
                     @foreach ($cargoModels as $item)
                       <option value="{{ $item->id }}">{{ $item->name }}</option>
                     @endforeach
@@ -68,7 +68,7 @@
           <div class="form-group">
               <label class="col-md-3 control-label">Booking Type</label>
               <div class="col-md-9">
-                  <select class="form-control" name="booking_type">
+                  <select class="form-control" name="booking_type" data-parsley-required="true">
                       <option value="buy">Buy</option>
                       <option value="charter">Charter</option>
                   </select>
@@ -77,7 +77,7 @@
           <div class="form-group">
               <label class="col-md-3 control-label">Charter Type</label>
               <div class="col-md-9">
-                  <select class="form-control" name="charter_type_id">
+                  <select class="form-control" name="charter_type_id" data-parsley-required="true">
                     @foreach ($charterTypes as $item)
                       <option value="{{ $item->id }}">{{ $item->name }}</option>
                     @endforeach
@@ -86,9 +86,9 @@
           </div>
           <div class="form-group">
               <label class="col-md-3 control-label">Start Date</label>
-              <div class="col-md-3">
+              <div class="col-md-5">
                 <div class="input-group date `form_datetime` form_datetime bs-datetime">
-                    <input type="text" size="16" name ="available_start" id="tpstart" class="form-control timepicker">
+                    <input type="text" size="16" name ="available_start" id="tpstart" class="form-control timepicker" data-parsley-required="true">
                     <span class="input-group-addon">
                         <button class="btn default date-set disable" type="button">
                             <i class="fa fa-calendar"></i>
@@ -99,9 +99,9 @@
           </div>
           <div class="form-group">
               <label class="col-md-3 control-label">End Date</label>
-              <div class="col-md-3">
+              <div class="col-md-5">
                   <div class="input-group date form_datetime form_datetime bs-datetime">
-                      <input type="text" size="16" name ="available_end" id="tpstart" class="form-control timepicker">
+                      <input type="text" size="16" name ="available_end" id="tpstart" class="form-control timepicker" data-parsley-required="true">
                       <span class="input-group-addon">
                           <button class="btn default date-set disable" type="button">
                               <i class="fa fa-calendar"></i>
@@ -113,63 +113,63 @@
           <div class="form-group">
               <label class="col-md-3 control-label">City</label>
               <div class="col-md-9">
-                  <input type="text" name="city" class="form-control" placeholder="Cargo City">
+                  <input type="text" name="city" class="form-control" placeholder="Cargo City" data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
           <div class="form-group">
               <label class="col-md-3 control-label">Location</label>
               <div class="col-md-9">
-                  <input type="text" name="location" class="form-control" placeholder="Cargo Location">
+                  <input type="text" name="location" class="form-control" placeholder="Cargo Location" data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
           <div class="form-group">
               <label class="col-md-3 control-label">Price</label>
               <div class="col-md-9">
-                  <input type="text" name="price" class="form-control" placeholder="Cargo Price">
+                  <input type="text" name="price" class="form-control" placeholder="Cargo Price" data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
           <div class="form-group">
               <label class="col-md-3 control-label">Area Of Service</label>
               <div class="col-md-9">
-                  <input type="text" name="area_of_service" class="form-control" placeholder="Cargo Area Of Service">
+                  <input type="text" name="area_of_service" class="form-control" placeholder="Cargo Area Of Service" data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
           <div class="form-group">
               <label class="col-md-3 control-label">Flag</label>
               <div class="col-md-9">
-                  <input type="text" name="flag" class="form-control" placeholder="Cargo Flag">
+                  <input type="text" name="flag" class="form-control" placeholder="Cargo Flag" data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
           <div class="form-group">
               <label class="col-md-3 control-label">Year Build</label>
               <div class="col-md-9">
-                  <input type="text" name="year_build" class="form-control" placeholder="Cargo Year Build">
+                  <input type="text" name="year_build" class="form-control" placeholder="Cargo Year Build" data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
           <div class="form-group">
               <label class="col-md-3 control-label">Load Capacity </label>
               <div class="col-md-9">
-                  <input type="text" name="load_capacity" class="form-control" placeholder="Cargo Load Capacity ">
+                  <input type="text" name="load_capacity" class="form-control" placeholder="Cargo Load Capacity " data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
           <div class="form-group">
               <label class="col-md-3 control-label">Available Capacity </label>
               <div class="col-md-9">
-                  <input type="text" name="available_capacity" value="0"  class="form-control" placeholder="Cargo Available Capacity ">
+                  <input type="text" name="available_capacity" value="0"  class="form-control" placeholder="Cargo Available Capacity " data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
           <div class="form-group">
               <label class="col-md-3 control-label" >Description</label>
               <div class="col-md-9">
-                  <textarea style="height:300px;" class="form-control" name ="description"  id="editor" rows="3"></textarea>
+                  <textarea style="height:300px;" class="form-control" name ="description"  id="editor" rows="3" data-parsley-required="true"></textarea>
               </div>
           </div>
           <div class="form-group">

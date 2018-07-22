@@ -96,6 +96,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="{{ URL::asset('admin/vendor/plugins/js.cookie.min.js') }}" type="text/javascript"></script>
         <script src="{{ URL::asset('admin/vendor/plugins/jquery-slimscroll/jquery.slimscroll.js') }}" type="text/javascript"></script>
         <script src="{{ URL::asset('admin/vendor/plugins/jquery.blockui.min.js') }}" type="text/javascript"></script>
+        <script src="{{ URL::asset('admin/vendor/plugins/parsley.min.js') }}" type="text/javascript"></script>
         <script src="{{ URL::asset('admin/vendor/plugins/bootstrap-switch/js/bootstrap-switch.js') }}" type="text/javascript"></script>
 
         <!-- END CORE PLUGINS -->

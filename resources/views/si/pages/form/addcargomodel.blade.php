@@ -22,13 +22,13 @@
 @endsection
 @section('formbody')
 <div class="portlet-body form">
-  <form class="form-horizontal" role="form" action="{{url('si/cargomodel')}}" method="POST">
+  <form class="form-horizontal" role="form" action="{{url('si/cargomodel')}}" method="POST" data-parsley-validate>
     @csrf
       <div class="form-body">
           <div class="form-group">
               <label class="col-md-3 control-label">Cargo Model Name</label>
               <div class="col-md-9">
-                  <input type="text" name="name" class="form-control" placeholder="Cargo Model Name">
+                  <input type="text" name="name" class="form-control" placeholder="Cargo Model Name" data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
