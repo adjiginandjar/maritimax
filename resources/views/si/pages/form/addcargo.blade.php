@@ -175,35 +175,35 @@
           <div class="form-group">
               <label class="col-md-3 control-label">Curb Weight</label>
               <div class="col-md-9">
-                  <input type="text" name="curb_weight" class="form-control" placeholder="Cargo Curb Weight">
+                  <input type="text" name="curb_weight" class="form-control" placeholder="Cargo Curb Weight" data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
           <div class="form-group">
               <label class="col-md-3 control-label">Length</label>
               <div class="col-md-9">
-                  <input type="text" name="length" class="form-control" placeholder="Cargo Length">
+                  <input type="text" name="length" class="form-control" placeholder="Cargo Length" data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
           <div class="form-group">
               <label class="col-md-3 control-label">Width</label>
               <div class="col-md-9">
-                  <input type="text" name="width" class="form-control" placeholder="Cargo Width">
+                  <input type="text" name="width" class="form-control" placeholder="Cargo Width" data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
           <div class="form-group">
               <label class="col-md-3 control-label">Height</label>
               <div class="col-md-9">
-                  <input type="text" name="height" class="form-control" placeholder="Cargo Height">
+                  <input type="text" name="height" class="form-control" placeholder="Cargo Height" data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
           <div class="form-group">
               <label class="col-md-3 control-label">Dimension</label>
               <div class="col-md-9">
-                  <input type="text" name="dimension" class="form-control" placeholder="Cargo Dimension">
+                  <input type="text" name="dimension" class="form-control" placeholder="Cargo Dimension" data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>

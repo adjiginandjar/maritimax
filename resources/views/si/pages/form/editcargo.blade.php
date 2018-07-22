@@ -183,28 +183,28 @@
           <div class="form-group">
               <label class="col-md-3 control-label">Length</label>
               <div class="col-md-9">
-                  <input type="text" name="length" value="{{ $cargo->length }}"  class="form-control" placeholder="Cargo Length">
+                  <input type="text" name="length" value="{{ $cargo->length }}"  class="form-control" placeholder="Cargo Length" data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
           <div class="form-group">
               <label class="col-md-3 control-label">Width</label>
               <div class="col-md-9">
-                  <input type="text" name="width" value="{{ $cargo->width }}"  class="form-control" placeholder="Cargo Width">
+                  <input type="text" name="width" value="{{ $cargo->width }}"  class="form-control" placeholder="Cargo Width" data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
           <div class="form-group">
               <label class="col-md-3 control-label">Height</label>
               <div class="col-md-9">
-                  <input type="text" name="height" value="{{ $cargo->height }}"  class="form-control" placeholder="Cargo Height">
+                  <input type="text" name="height" value="{{ $cargo->height }}"  class="form-control" placeholder="Cargo Height" data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
           <div class="form-group">
               <label class="col-md-3 control-label">Dimension</label>
               <div class="col-md-9">
-                  <input type="text" name="dimension" value="{{ $cargo->dimension }}"  class="form-control" placeholder="Cargo Dimension">
+                  <input type="text" name="dimension" value="{{ $cargo->dimension }}"  class="form-control" placeholder="Cargo Dimension" data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
