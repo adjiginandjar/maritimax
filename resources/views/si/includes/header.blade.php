@@ -2,8 +2,11 @@
 <div class="page-header-inner ">
     <!-- BEGIN LOGO -->
     <div class="page-logo">
-        <a href="index.html">
-            <img src="../assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
+            <img src="http://maritimax.com/assets/images/logo2.svg" alt="logo" class="logo-default" style="
+              width: 130px;
+              height: 32px;
+              margin-top: 10px;
+"/>
         <div class="menu-toggler sidebar-toggler">
             <span></span>
         </div>
