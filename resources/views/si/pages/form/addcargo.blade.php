@@ -6,6 +6,7 @@
 
 <link href="{{ URL::asset('admin/global/plugins/dropzone/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('admin/global/plugins/dropzone/basic.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ URL::asset('admin/vendor/plugins/jquery-ui.css') }}" rel="stylesheet" type="text/css"/>
 <style>
 .ck-editor__editable {
     min-height: 300px;
@@ -109,7 +110,7 @@
             <div class="form-group">
                 <label class="col-md-3 control-label">City</label>
                 <div class="col-md-9">
-                    <input type="text" name="city" class="form-control" placeholder="Cargo City" data-parsley-required="true">
+                    <input type="text" id="autocomplete" name="city" class="form-control" placeholder="Cargo City" data-parsley-required="true">
                     <!-- <span class="help-block"> A block of help text. </span> -->
                 </div>
             </div>
@@ -347,7 +348,7 @@
 <script src="{{ URL::asset('admin/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') }}" type="text/javascript"></script>
 <script src="{{ URL::asset('admin/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js') }}" type="text/javascript"></script>
 <script src="{{ URL::asset('admin/pages/scripts/components-date-time-pickers.js') }}" type="text/javascript"></script>
-
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
 <script src="{{ URL::asset('admin/global/plugins/dropzone/dropzone.min.js') }}"></script>
 <script src="{{ URL::asset('admin/pages/scripts/form-dropzone.js') }}"></script>
 <!-- <script src="{{ URL::asset('admin/vendor/jquery-fileupload/js/vendor/jquery.ui.widget.js') }}" type="text/javascript"></script>
@@ -369,6 +370,34 @@
 
 
 <script type="text/javascript">
+
+function get_json_ac_api(url_api, query) {
+    var result;
+    result = $.getJSON(url_api, {
+        keyword: query
+    });
+    return result;
+}
+
+$( "#autocomplete" ).autocomplete({
+
+  source: function(request, response) {
+                    var arrdata = [];
+                    var json_data = get_json_ac_api("{{ url('/api/cities') }}", request.term);
+                    json_data.done(function(data) {
+                        //if (!$.isEmptyObject(data)) {
+                        $.each(data, function(key, value) {
+                            arrdata.push(value.name);
+                        });
+                        response(arrdata);
+                        //}
+                        //else{
+                        //  $('#actag-tokenfield').val('');
+                        //}
+                    });
+                }
+});
+
     ClassicEditor
         .create(document.querySelector('#editor'), {
         height: '25em'
