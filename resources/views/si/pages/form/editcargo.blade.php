@@ -133,7 +133,7 @@
           <div class="form-group">
               <label class="col-md-3 control-label">Price</label>
               <div class="col-md-9">
-                  <input type="text" name="price" value="{{ $cargo->price }}"  class="form-control" placeholder="Cargo Price" data-parsley-required="true">
+                  <input type="text" name="price" value="{{ $cargo->price }}"  class="form-control" placeholder="Cargo Price (Fill only number)" data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
@@ -154,21 +154,21 @@
           <div class="form-group">
               <label class="col-md-3 control-label">Year Build</label>
               <div class="col-md-9">
-                  <input type="text" name="year_build" value="{{ $cargo->year_build }}"  class="form-control" placeholder="Cargo Year Build" data-parsley-required="true">
+                  <input type="text" name="year_build" value="{{ $cargo->year_build }}"  class="form-control" placeholder="Cargo Year Build (Fill only number)" data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
           <div class="form-group">
               <label class="col-md-3 control-label">Load Capacity </label>
               <div class="col-md-9">
-                  <input type="text" name="load_capacity" value="{{ $cargo->load_capacity }}"  class="form-control" placeholder="Cargo Load Capacity " data-parsley-required="true">
+                  <input type="text" name="load_capacity" value="{{ $cargo->load_capacity }}"  class="form-control" placeholder="Cargo Load Capacity (Fill only number)" data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
           <div class="form-group">
               <label class="col-md-3 control-label">Available Capacity </label>
               <div class="col-md-9">
-                  <input type="text" name="available_capacity" value="{{ $cargo->available_capacity }}"  class="form-control" placeholder="Cargo Available Capacity " data-parsley-required="true">
+                  <input type="text" name="available_capacity" value="{{ $cargo->available_capacity }}"  class="form-control" placeholder="Cargo Available Capacity (Fill only number)" data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
@@ -181,28 +181,28 @@
           <div class="form-group">
               <label class="col-md-3 control-label">Curb Weight</label>
               <div class="col-md-9">
-                  <input type="text" name="curb_weight" value="{{ $cargo->curb_weight }}"  class="form-control" placeholder="Cargo Curb Weight">
+                  <input type="text" name="curb_weight" value="{{ $cargo->curb_weight }}"  class="form-control" placeholder="Cargo Curb Weight (Fill only number)">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
           <div class="form-group">
               <label class="col-md-3 control-label">Length</label>
               <div class="col-md-9">
-                  <input type="text" name="length" value="{{ $cargo->length }}"  class="form-control" placeholder="Cargo Length" data-parsley-required="true">
+                  <input type="text" name="length" value="{{ $cargo->length }}"  class="form-control" placeholder="Cargo Length (Fill only number)" data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
           <div class="form-group">
               <label class="col-md-3 control-label">Width</label>
               <div class="col-md-9">
-                  <input type="text" name="width" value="{{ $cargo->width }}"  class="form-control" placeholder="Cargo Width" data-parsley-required="true">
+                  <input type="text" name="width" value="{{ $cargo->width }}"  class="form-control" placeholder="Cargo Width (Fill only number)" data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
           <div class="form-group">
               <label class="col-md-3 control-label">Height</label>
               <div class="col-md-9">
-                  <input type="text" name="height" value="{{ $cargo->height }}"  class="form-control" placeholder="Cargo Height" data-parsley-required="true">
+                  <input type="text" name="height" value="{{ $cargo->height }}"  class="form-control" placeholder="Cargo Height (Fill only number)" data-parsley-required="true">
                   <!-- <span class="help-block"> A block of help text. </span> -->
               </div>
           </div>
