@@ -38,7 +38,7 @@
         <th>Available Start</th>
         <th>Available End</th>
 
-        <th width="100px">Action</th>
+        <th width="150px">Action</th>
     </tr>
     @foreach ($cargos as $cargo)
     <tr>
@@ -93,12 +93,13 @@
 
     function unpublish(id) {
         //alert(id);
-        /* $.post("example.php")
-            .always(function () {
+         $.post("{{ url('/api/si/cargo/unpublish') }}",{
+           cargo_id: id
+         }).always(function () {
                 location.reload();
-            }); */
-        location.reload();
-        
+            });
+        //location.reload();
+
     }
 </script>
 @endsection

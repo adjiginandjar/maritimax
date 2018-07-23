@@ -28,7 +28,7 @@ class CargoController extends Controller
      */
     public function index()
     {
-        $cargos = Cargo::paginate(10);
+        $cargos = Cargo::where('publish_status', '=', 'publish')->paginate(10);
         return view('si.pages.list.cargo',compact('cargos'))
             ->with('i', (request()->input('page', 1) - 1) * 10);
     }
@@ -147,6 +147,32 @@ class CargoController extends Controller
     {
 
     }
+
+    /**
+     * SI API Controller
+     */
+
+     public function unpublish(Request $request)
+     {
+
+      $cargo = Cargo::findOrFail($request->input('cargo_id'));
+
+      $cargo->publish_status = 'unpublish';
+      $cargo->save();
+
+       return $cargo;
+     }
+
+     public function publish(Request $request)
+     {
+
+      $cargo = Cargo::findOrFail($request->input('cargo_id'));
+
+      $cargo->publish_status = 'publish';
+      $cargo->save();
+
+       return $cargo;
+     }
 
 
     /**

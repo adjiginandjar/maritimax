@@ -95,3 +95,11 @@ Route::get('cities', 'CitiesController@autocomplete');
 */
 
 Route::post('upload/single', 'UploadController@uploadSingle');
+
+
+/**
+ * SI Controller Cargo
+ */
+
+ Route::post('/si/cargo/unpublish', 'CargoController@unpublish');
+ Route::post('/si/cargo/publish', 'CargoController@publish');
