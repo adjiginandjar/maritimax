@@ -8,6 +8,11 @@
 
 <link href="{{ URL::asset('admin/global/plugins/dropzone/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('admin/global/plugins/dropzone/basic.min.css') }}" rel="stylesheet" type="text/css" />
+<style>
+.ck-editor__editable {
+    min-height: 300px;
+}
+</style>
 
 <!-- <link rel="stylesheet" href="{{url('css/dropzone.css')}}"> -->
 @endsection
