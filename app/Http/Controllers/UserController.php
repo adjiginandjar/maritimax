@@ -41,15 +41,23 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-      $user = User::create([
-          'name' => $request->input('name'),
-          'email' => $request->input('email'),
-          'phone_number' => $request->input('phone_number'),
-          'reset_attempt' => 0,
-          'password' => bcrypt($request->input('password')),
-      ]);
+      $existUser  = User::where('email',$request->input('email'))->first();
+      if($existUser){
+        return response()->json(['error' => 'Email Already Registered', 'message' => 'Email Already Registered'], 201);
 
-      return $this->getBearerTokenByUser($user, 2, true);
+      }else{
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'phone_number' => $request->input('phone_number'),
+            'reset_attempt' => 0,
+            'password' => bcrypt($request->input('password')),
+        ]);
+        return $this->getBearerTokenByUser($user, 2, true);
+
+      }
+
+
 
 
 
