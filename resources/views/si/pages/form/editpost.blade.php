@@ -1,5 +1,12 @@
 @extends('si.layouts.baselayout')
+@section('head')
 
+<style>
+.ck-editor__editable {
+    min-height: 300px;
+}
+</style>
+@endsection
 @section('bread-crumb')
 <li>
     <a href="index.html">Home</a>

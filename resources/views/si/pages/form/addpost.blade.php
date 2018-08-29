@@ -1,5 +1,12 @@
 @extends('si.layouts.baselayout')
+@section('head')
 
+<style>
+.ck-editor__editable {
+    min-height: 300px;
+}
+</style>
+@endsection
 @section('bread-crumb')
 <li>
     <a href="index.html">Home</a>
@@ -46,7 +53,7 @@
           <div class="form-group">
               <label class="col-md-3 control-label" >Body</label>
               <div class="col-md-9">
-                  <textarea class="form-control"  name ="body"  id="editor" rows="3" data-parsley-required="true"></textarea>
+                  <textarea class="form-control"  name ="body"  id="editor" rows="10" data-parsley-required="true"></textarea>
               </div>
           </div>
           <div class="form-group">

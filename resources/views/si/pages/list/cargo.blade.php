@@ -4,7 +4,7 @@
     <i class="fa fa-circle"></i>
 </li>
 <li>
-    <span>Cargo</span>
+    <span>Product</span>
     <i class="fa fa-circle"></i>
 </li>
 <li>
@@ -12,7 +12,7 @@
 </li>
 @endsection @section('page-title')
 
-<h1 class="page-title"> Cargo List
+<h1 class="page-title"> Product List
     <!-- <small>bootstrap inputs, input groups, custom checkboxes and radio controls and more</small> -->
 </h1>
 @endsection @section('formbody')
@@ -21,7 +21,7 @@
     <div class="col-lg-12 margin-tb">
 
         <div class="pull-right">
-            <a class="btn btn-success" href="{{ route('cargo.create') }}"> Create New Cargo</a>
+            <a class="btn btn-success" href="{{ route('cargo.create') }}"> Create New Product</a>
         </div>
     </div>
 </div>
@@ -44,8 +44,8 @@
     <tr>
         <td>{{ ++$i }}</td>
         <td>{{ $cargo->name }}</td>
-        <td>{{ $cargo->cargoModel->name }}</td>
-        <td>{{ $cargo->categoryCargo->name }}</td>
+        <td>{{ $cargo->cargoModel != null ? $cargo->cargoModel->name : '-' }}</td>
+        <td>{{ $cargo->categoryCargo != null ? $cargo->categoryCargo->name : '-' }}</td>
         <td>{{ $cargo->city }}</td>
         <td>{{ $cargo->location }}</td>
         <td>{{ $cargo->price }}</td>

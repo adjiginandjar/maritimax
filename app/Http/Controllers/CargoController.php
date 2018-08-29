@@ -28,7 +28,7 @@ class CargoController extends Controller
      */
     public function index()
     {
-        $cargos = Cargo::where('publish_status', '=', 'publish')->paginate(10);
+        $cargos = Cargo::where('publish_status', '=', 'publish')->orderBy('created_at', 'desc')->paginate(10);
         return view('si.pages.list.cargo',compact('cargos'))
             ->with('i', (request()->input('page', 1) - 1) * 10);
     }
@@ -54,7 +54,6 @@ class CargoController extends Controller
      */
     public function store(Request $request)
     {
-      // info($request);
       $request->request->add(["available_capacity"=>$request['load_capacity']]);
       $cargo = Cargo::Create($request->all());
 
@@ -195,9 +194,9 @@ class CargoController extends Controller
     {
         $limit = 10;
         $query = DB::table('cargos')
-                ->join('cargo_models', 'cargos.cargo_model_id', '=', 'cargo_models.id')
-                ->join('charter_types', 'cargos.charter_type_id', '=', 'charter_types.id')
-                ->join('category_cargos', 'cargos.category_cargo_id', '=', 'category_cargos.id')
+                ->leftJoin('cargo_models', 'cargos.cargo_model_id', '=', 'cargo_models.id')
+                ->leftJoin('charter_types', 'cargos.charter_type_id', '=', 'charter_types.id')
+                ->leftJoin('category_cargos', 'cargos.category_cargo_id', '=', 'category_cargos.id')
                 ->select('cargos.*', 'cargo_models.name as cargo_model','charter_types.name as charter_type','category_cargos.name as category_cargo');
 
         $query->where('booking_status', 'available');
@@ -244,4 +243,6 @@ class CargoController extends Controller
         return $cargos;
 
     }
+
+    
 }

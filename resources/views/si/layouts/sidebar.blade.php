@@ -20,28 +20,28 @@
         <!-- END SIDEBAR TOGGLER BUTTON -->
         <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
         <li class="heading">
-            <h3 class="uppercase">Cargo</h3>
+            <h3 class="uppercase">Product</h3>
         </li>
         <li class="nav-item start active open ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-diamond"></i>
-                <span class="title">Cargo</span>
+                <span class="title">Product</span>
                 <span class="arrow"></span>
             </a>
             <ul class="sub-menu">
                 <li class="nav-item  ">
                     <a href="{{ route('cargo.index')  }}" class="nav-link ">
-                        <span class="title">Cargo</span>
+                        <span class="title">Product</span>
                     </a>
                 </li>
                 <li class="nav-item  ">
                     <a href="{{ route('categorycargo.index') }}" class="nav-link ">
-                        <span class="title selected">Category Cargo</span>
+                        <span class="title selected">Category Product</span>
                     </a>
                 </li>
                 <li class="nav-item  ">
                     <a href="{{ route('cargomodel.index') }}" class="nav-link ">
-                        <span class="title">Cargo Model</span>
+                        <span class="title">Product Model</span>
                     </a>
                 </li>
             </ul>
