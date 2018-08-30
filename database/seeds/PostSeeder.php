@@ -26,7 +26,7 @@ class PostSeeder extends Seeder
           'publish_status' => 'publish',
           'category_id' => $faker->numberBetween(1, 3),
           'img_cover' => $faker->imageUrl($width = 768, $height = 432),
-          'user_id' => $faker->numberBetween(1, 5),
+          'user_id' => $faker->numberBetween(1, 2),
 
         ]);
 

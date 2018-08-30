@@ -14,7 +14,7 @@ class TagPostSeeder extends Seeder
     {
       $faker = \Faker\Factory::create();
 
-      for ($post_id = 1; $post_id <= 40; $post_id++) {
+      for ($post_id = 1; $post_id <= 3; $post_id++) {
           TagPost::create([
               'post_id' => $post_id,
               'tag_id' => $faker->numberBetween(1, 3),
