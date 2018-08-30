@@ -19,7 +19,7 @@ class CargosTableSeeder extends Seeder
         $price=250000;
         $now=Carbon::now();
 
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 3; $i++) {
             Cargo::create([
               'name' => $faker->name,
               'description' => $faker->paragraph,

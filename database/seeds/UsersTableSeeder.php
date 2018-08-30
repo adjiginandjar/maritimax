@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
       $price=250000;
       $now='';
 
-      for ($i = 0; $i < 20; $i++) {
+      for ($i = 0; $i < 3; $i++) {
           User::create([
             'name' => $faker->name,
             'email' => $faker->safeEmail,

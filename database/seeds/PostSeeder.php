@@ -16,7 +16,7 @@ class PostSeeder extends Seeder
       $category_ids = [1, 2, 3];
 
 
-      for ($i = 1; $i <= 40; $i++) {
+      for ($i = 1; $i <= 3; $i++) {
         $title = $faker->sentence;
         Post::create([
 
