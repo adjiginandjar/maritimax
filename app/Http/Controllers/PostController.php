@@ -18,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-      $posts = Post::paginate(10);
+      $posts = Post::orderBy('created_at', 'desc')->paginate(10);
       return view('si.pages.list.post',compact('posts'))
           ->with('i', (request()->input('page', 1) - 1) * 10);
     }
@@ -127,6 +127,6 @@ class PostController extends Controller
 
     public function paginate($limit)
     {
-        return ListPostResource::collection(Post::paginate($limit));
+        return ListPostResource::collection(Post::orderBy('created_at', 'desc')->paginate($limit));
     }
 }
