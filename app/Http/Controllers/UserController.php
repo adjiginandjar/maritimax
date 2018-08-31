@@ -171,7 +171,7 @@ class UserController extends Controller
             Mail::send('emails.forgotpassword', $data, function($message) use ($user){
                 $message->to($user->email, $user->name)
                         ->subject('Request For Reset Password');
-                $message->from('siapayangnanyasender@gmail.com','Admin Maritimax');
+                $message->from(env('MAIL_USERNAME'),'Admin Maritimax');
             });
 
             $user->save();
