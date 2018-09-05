@@ -53,6 +53,13 @@ class UserController extends Controller
             'reset_attempt' => 0,
             'password' => bcrypt($request->input('password')),
         ]);
+        $data = array('name'=>$user->name);
+        Mail::send('emails.welcomeregistration', $data, function($message) use ($user){
+          $message->to($request->input('name'), $request->input('email'))
+                  ->subject('Welcome To Maritimax');
+          $message->from(env('MAIL_USERNAME'),'Admin Maritimax');
+        });
+
         return $this->getBearerTokenByUser($user, 2, true);
 
       }
@@ -143,6 +150,12 @@ class UserController extends Controller
             'email' => $gooleUser->getEmail(),
             'password' => bcrypt('google'.':'.$gooleUser->getEmail()),
         ]);
+        $data = array('name'=>$user->name);
+        Mail::send('emails.welcomeregistration', $data, function($message) use ($user){
+          $message->to($gooleUser->getEmail(), $gooleUser->getName())
+                  ->subject('Welcome To Maritimax');
+          $message->from(env('MAIL_USERNAME'),'Admin Maritimax');
+        });
 
         return $this->getBearerTokenByUser($newUser, 2, true);
       }

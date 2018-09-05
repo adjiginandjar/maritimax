@@ -67,7 +67,7 @@ class BookingController extends Controller
          Mail::send('emails.bookingconfirm', $data, function($message) use ($user){
              $message->to($user->email, $user->name)
                      ->subject('Booking Status');
-             $message->from('siapayangnanyasender@gmail.com','Admin Maritimax');
+             $message->from(env('MAIL_USERNAME'),'Admin Maritimax');
          });
           return response()->json($booking, 201);
 
@@ -137,6 +137,41 @@ class BookingController extends Controller
     public function destroy(booking $booking)
     {
         //
+    }
+    public function apporve(Request $request)
+    {
+
+      $booking = Booking::findOrFail($request->input('booking_id'));
+
+      $booking->booking_status = 'approved';
+      $booking->save();
+
+      $data = array('bookingid'=>$booking->id,'name'=>$booking->fullname);
+         Mail::send('emails.bookingconfirm', $data, function($message) use ($user){
+             $message->to($booking->email, $booking->fullname)
+                     ->subject('Booking Status Approved');
+             $message->from(env('MAIL_USERNAME'),'Admin Maritimax');
+         });
+
+      return $booking;
+    }
+
+    public function reject(Request $request)
+    {
+
+      $booking = Booking::findOrFail($request->input('booking_id'));
+
+      $booking->booking_status = 'rejected';
+      $booking->save();
+
+      $data = array('bookingid'=>$booking->id,'name'=>$booking->fullname);
+         Mail::send('emails.bookingconfirm', $data, function($message) use ($user){
+             $message->to($booking->email, $booking->fullname)
+                     ->subject('Booking Status Rejected');
+             $message->from(env('MAIL_USERNAME'),'Admin Maritimax');
+         });
+
+      return $booking;
     }
 
     public function isBooked(Request $request)
