@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ContactUs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ContactUsController extends Controller
 {
@@ -38,6 +39,12 @@ class ContactUsController extends Controller
     public function store(Request $request)
     {
         $contactus = ContactUs::create($request->all());
+
+         Mail::send('emails.contactus', $data, function($message) use ($user){
+          $message->to($user->email, $user->name)
+                  ->subject('Contact Us Maritimax');
+          $message->from(env('MAIL_USERNAME'),'Admin Maritimax');
+        });
 
         return response()->json($contactus, 201);
     }
