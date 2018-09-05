@@ -53,9 +53,11 @@ class UserController extends Controller
             'reset_attempt' => 0,
             'password' => bcrypt($request->input('password')),
         ]);
+
+
         $data = array('name'=>$user->name);
         Mail::send('emails.welcomeregistration', $data, function($message) use ($user){
-          $message->to($request->input('name'), $request->input('email'))
+          $message->to($user->email, $user->name)
                   ->subject('Welcome To Maritimax');
           $message->from(env('MAIL_USERNAME'),'Admin Maritimax');
         });
@@ -150,7 +152,7 @@ class UserController extends Controller
             'email' => $gooleUser->getEmail(),
             'password' => bcrypt('google'.':'.$gooleUser->getEmail()),
         ]);
-        $data = array('name'=>$user->name);
+        $data = array('name'=>$gooleUser->getName());
         Mail::send('emails.welcomeregistration', $data, function($message) use ($user){
           $message->to($gooleUser->getEmail(), $gooleUser->getName())
                   ->subject('Welcome To Maritimax');

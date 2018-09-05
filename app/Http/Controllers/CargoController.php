@@ -170,7 +170,7 @@ class CargoController extends Controller
       $cargo->publish_status = 'publish';
       $cargo->save();
 
-       return $cargo;
+      return $cargo;
      }
 
 

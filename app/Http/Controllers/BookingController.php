@@ -147,7 +147,7 @@ class BookingController extends Controller
       $booking->save();
 
       $data = array('bookingid'=>$booking->id,'name'=>$booking->fullname);
-         Mail::send('emails.bookingconfirm', $data, function($message) use ($user){
+         Mail::send('emails.bookingconfirm', $data, function($message) use ($booking){
              $message->to($booking->email, $booking->fullname)
                      ->subject('Booking Status Approved');
              $message->from(env('MAIL_USERNAME'),'Admin Maritimax');
@@ -165,7 +165,7 @@ class BookingController extends Controller
       $booking->save();
 
       $data = array('bookingid'=>$booking->id,'name'=>$booking->fullname);
-         Mail::send('emails.bookingconfirm', $data, function($message) use ($user){
+         Mail::send('emails.bookingconfirm', $data, function($message) use ($booking){
              $message->to($booking->email, $booking->fullname)
                      ->subject('Booking Status Rejected');
              $message->from(env('MAIL_USERNAME'),'Admin Maritimax');
