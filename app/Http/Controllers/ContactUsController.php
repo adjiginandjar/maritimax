@@ -61,7 +61,7 @@ class ContactUsController extends Controller
      */
     public function show(ContactUs $contactus)
     {
-        //
+        return view('si.pages.form.viewcontact',compact('contactus'));
     }
 
     /**
