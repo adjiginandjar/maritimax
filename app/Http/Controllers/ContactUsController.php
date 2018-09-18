@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ContactUs;
+use Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -38,10 +39,13 @@ class ContactUsController extends Controller
      */
     public function store(Request $request)
     {
+        
+        
         $contactus = ContactUs::create($request->all());
-
-         Mail::send('emails.contactus', $data, function($message) use ($user){
-          $message->to($user->email, $user->name)
+        $data = array('name'=>$request->input('fullname'), "email" => $request->input('email'));
+        
+         Mail::send('emails.contactus', $data, function($message) use ($data){
+          $message->to($data['email'], $data['name'])
                   ->subject('Contact Us Maritimax');
           $message->from(env('MAIL_USERNAME'),'Admin Maritimax');
         });
