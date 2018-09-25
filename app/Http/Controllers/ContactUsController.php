@@ -16,7 +16,7 @@ class ContactUsController extends Controller
      */
     public function index()
     {
-      $contactuses = ContactUs::paginate(5);
+      $contactuses = ContactUs::orderBy('created_at', 'desc')->paginate(5);
       return  view('si.pages.list.contactus',compact('contactuses'))
           ->with('i', (request()->input('page', 1) - 1) * 5);
     }
