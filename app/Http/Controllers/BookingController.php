@@ -63,9 +63,9 @@ class BookingController extends Controller
           $cargo->save();
           DB::commit();
 
-         $data = array('bookingid'=>$booking->id);
+         $data = array('bookingid'=>$booking->id, 'name'=>$booking->fullname, "email" => $booking->email);
          Mail::send('emails.bookingconfirm', $data, function($message) use ($user){
-             $message->to($user->email, $user->name)
+             $message->to($data['email'], $data['name'])
                      ->subject('Booking Status');
              $message->from(env('MAIL_USERNAME'),'Admin Maritimax');
          });
