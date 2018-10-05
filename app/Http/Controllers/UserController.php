@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use App\Traits\PassportToken;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Socialite;
 
@@ -209,6 +210,22 @@ class UserController extends Controller
         return response()->json(['message' => 'Password has been change'], 201);
       }else{
         return response()->json(['error' => 'Invalid Token', 'message' => 'Token not Found'], 201);
+      }
+    }
+  
+    public function changePassword(Request $request){
+      $id = $request->user()->id;      
+      $user  = User::where([
+        ['id', '=', $id],
+    ])->first();
+      $checkPasword = Hash::check($request->old_password, $user->password);
+
+      if($checkPasword){
+        $user->password = bcrypt($request->input('new_password'));
+        $user->save();
+        return response()->json(['message' => 'Password has been change'], 201);
+      }else{
+        return response()->json(['error' => 'Invalid Old Password', 'message' => 'Invalid Old Password'], 400);
       }
     }
 

@@ -21,7 +21,8 @@ class BookingResource extends JsonResource
           'destination_from' => $this->destination_from,
           'destination_to' => $this->destination_to,
           'date' => $this->date,
-          'cargo' => $this->cargo,
+          'created_at' => $this->created_at,
+          'cargo' => $this->cargo->name,
           'booking_status'=>$this->booking_status,
         ];
     }

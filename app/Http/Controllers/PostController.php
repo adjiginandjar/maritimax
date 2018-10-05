@@ -18,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-      $posts = Post::orderBy('created_at', 'desc')->paginate(10);
+      $posts = Post::where('publish_status', '=', 'publish')->orderBy('created_at', 'desc')->paginate(10);
       return view('si.pages.list.post',compact('posts'))
           ->with('i', (request()->input('page', 1) - 1) * 10);
     }
@@ -127,6 +127,19 @@ class PostController extends Controller
 
     public function paginate($limit)
     {
-        return ListPostResource::collection(Post::orderBy('created_at', 'desc')->paginate($limit));
+        return ListPostResource::collection(Post::where('publish_status', '=', 'publish')->orderBy('created_at', 'desc')->paginate($limit));
     }
+
+    public function unpublish(Request $request)
+    {
+
+     $post = Post::findOrFail($request->input('post_id'));
+
+    
+     $post->publish_status = 'unpublish';
+     $post->save();
+
+     return response()->json(null,204);
+    }
+
 }

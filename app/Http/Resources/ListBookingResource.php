@@ -15,13 +15,14 @@ class ListBookingResource extends JsonResource
     public function toArray($request)
     {
         return [
-          'id' => $this->id,
-          'capacity' => $this->capacity,
-          'destination_from' => $this->destination_from,
-          'destination_to' => $this->destination_to,
-          'date' => $this->date,
-          'cargo' => $this->cargo,
-          'booking_status'=>$this->booking_status,
-        ];
+            'id' => $this->id,
+            'capacity' => $this->capacity,
+            'destination_from' => $this->destination_from,
+            'destination_to' => $this->destination_to,
+            'date' => $this->date,
+            'created_at' => $this->created_at,
+            'cargo' => $this->cargo->name,
+            'booking_status'=>$this->booking_status,
+          ];
     }
 }

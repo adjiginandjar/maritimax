@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Cargo;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Resources\BookingResource;
+use App\Http\Resources\ListBookingResource;
 
 class BookingController extends Controller
 {
@@ -89,8 +90,8 @@ class BookingController extends Controller
      */
     public function getListBooking(Request $request)
     {
-      $booking = Booking::where("user_id",$request->user()->id)->first();
-      return response()->json(new BookingResource($booking), 201);
+      $booking = Booking::where("user_id",$request->user()->id)->get();
+      return response()->json(ListBookingResource::collection($booking), 201);
 
     }
 
@@ -146,12 +147,12 @@ class BookingController extends Controller
       $booking->booking_status = 'approved';
       $booking->save();
 
-      $data = array('bookingid'=>$booking->id,'name'=>$booking->fullname);
+     /*  $data = array('bookingid'=>$booking->id,'name'=>$booking->fullname);
          Mail::send('emails.bookingconfirm', $data, function($message) use ($booking){
              $message->to($booking->email, $booking->fullname)
                      ->subject('Booking Status Approved');
              $message->from(env('MAIL_USERNAME'),'Admin Maritimax');
-         });
+         }); */
 
       return $booking;
     }
@@ -164,12 +165,12 @@ class BookingController extends Controller
       $booking->booking_status = 'rejected';
       $booking->save();
 
-      $data = array('bookingid'=>$booking->id,'name'=>$booking->fullname);
+      /* $data = array('bookingid'=>$booking->id,'name'=>$booking->fullname);
          Mail::send('emails.bookingconfirm', $data, function($message) use ($booking){
              $message->to($booking->email, $booking->fullname)
                      ->subject('Booking Status Rejected');
              $message->from(env('MAIL_USERNAME'),'Admin Maritimax');
-         });
+         }); */
 
       return $booking;
     }

@@ -39,6 +39,8 @@ Route::post('posts', 'PostController@store');
 Route::put('posts/{post}', 'PostController@update');
 Route::delete('posts/{post}', 'PostController@delete');
 
+Route::post('/si/posts/unpublish', 'PostController@unpublish');
+
 /**
 *
 * User API Controller
@@ -48,6 +50,7 @@ Route::post('user/register/google','UserController@storeGoogle');
 Route::get('user/fetchgoogle','UserController@getUser');
 Route::post('user/forgot-password','UserController@forgotPassword');
 Route::post('user/reset-password','UserController@resetPassword');
+Route::post('user/change-password','UserController@changePassword')->middleware('auth:api');
 // Route::get('callback/google', 'Auth\LoginController@handleProviderCallback');
 
 
@@ -59,6 +62,9 @@ Route::post('user/reset-password','UserController@resetPassword');
 Route::post('booking/process', 'BookingController@store')->middleware('auth:api');
 Route::get('user/booking', 'BookingController@getListBooking')->middleware('auth:api');
 Route::get('booking/check', 'BookingController@isBooked')->middleware('auth:api');
+
+Route::post('/si/booking/approve', 'BookingController@apporve');
+Route::post('/si/booking/reject', 'BookingController@reject');
 
 /**
 * Contact Us API Controller

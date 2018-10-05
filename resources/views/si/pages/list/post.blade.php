@@ -47,10 +47,51 @@
             <td>{{ $post->creator->name }}</td>
             <td>
                 <a class="btn btn-primary" href="{{ route('post.edit',$post->id) }}">Edit</a>
+            <a class="btn btn-danger" data-toggle="modal" data-target="#myModal" data-id="{{$post->id}}">Delete</a>
             </td>
         </tr>
         @endforeach
   </table>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Deletion</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <i>Are you sure want to remove this item?</i>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button id="submit" type="button" class="btn btn-primary">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+  {!! $posts->links() !!}@endsection @section('script')
+  <script>
+    $('#myModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var id = button.data('id')
+        var modal = $(this)
+        modal.find('#submit').attr("onclick", "unpublish(" + id + "); return false")
+    })
 
-  {!! $posts->links() !!}
+    function unpublish(id) {
+        //alert(id);
+         $.post("{{ url('/api/si/posts/unpublish') }}",{
+           post_id: id
+         }).always(function () {
+                location.reload();
+            });
+        //location.reload();
+
+    }
+</script>
 @endsection
